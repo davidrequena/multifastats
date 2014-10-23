@@ -140,7 +140,7 @@ For sets of sequences, the parameters calculated are:
 ----------------------------------------
 For each sequence, the parameters calculated are:
 
-A .csv file is write in the current working directory: singlst_(TIME).csv'
+A .csv file is write in the current working directory: singlst_(FILENAME)_(TIME).csv'
 This contains each single sequence stats:
 
 - N: Number of the sequence in the set of sequences.
@@ -155,6 +155,7 @@ This contains each single sequence stats:
 '''
 #=========================================================================#
 usersys=platform.system()
+print usersys
 def exitval():
     if usersys=='Windows':
         os.system('pause')
@@ -180,16 +181,16 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     lctinp=1
     pass
 elif len(sys.argv)==2: #This is the case when the script receive arguments asking for information.
-    if ('-h' or '--help') in sys.argv[1].lower():
+    if sys.argv[1].lower() in ('h','-h','help','-help','--help'):
         print dochelp
         exitval()
-    elif ('-v' or'--version') in sys.argv[1].lower():
+    elif sys.argv[1].lower() in ('v','-v','version','-version','--version'):
         print docver
         exitval()
-    elif ('-i' or '--info') in sys.argv[1].lower():
+    elif sys.argv[1].lower() in ('i','-i','info','-info','--info'):
         print docinfo
         exitval()
-    elif ('-n' or '--notes') in sys.argv[1].lower():
+    elif sys.argv[1].lower() in ('n','-n','notes','-notes','--notes'):
         print docnot
         exitval()
     else: #We will add more options for info in the future versions.
@@ -265,16 +266,17 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
         else:
             print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
         filename=raw_input("File name or Option: ")
-        if filename.lower() in ('-h','--help','-v','--version','-i','--info','-n','--notes'):
+        options=('h','-h','help','-help','--help','v','-v','version','-version','--version','i','-i','info','-info','--info','n','-n','notes','-notes','--notes')
+        if filename.lower() in options:
             maininp=0 #This means that we get a correct file name or option, so we will use this to continue.
             lctinp=0
             if filename.lower() in ('h','-h','help','-help','--help'):
                 print dochelp
-            elif filename.lower() in ('-v','--version'):
+            elif filename.lower() in ('v','-v','version','-version','--version'):
                 print docver
-            elif filename.lower() in ('-i','--info'):
+            elif filename.lower() in ('i','-i','info','-info','--info'):
                 print docinfo
-            elif filename.lower() in ('-n','--notes'):
+            elif filename.lower() in ('n','-n','notes','-notes','--notes'):
                 print docnot
             else: #We will add more options for info in the future versions.
                 print "\nIncorrect way to give the arguments. See 'help' with '-h' or '--help' option."
@@ -348,7 +350,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
     from _socket import timeout
     from Bio.SeqUtils import GC, molecular_weight
     currTime = time.strftime("%d")+time.strftime("%m")+time.strftime("%y")+time.strftime("%H")+time.strftime("%M")+time.strftime("%S")
-    outpbyseqcsv = open("sganl_"+file.replace(".","")+currTime+".csv","w") #Creating the file to write the output
+    outpbyseqcsv = open("sganl_"+file.replace(".","")+"_"+currTime+".csv","w") #Creating the file to write the output
     outpbyseqcsv.write('N,ID,Length,%GC,Mol Weight\n') #Headers line
     idsnocom=[] #To store the ID of each seq without commas.
     molwght=[] #To store the molecular weight of each sequence.
@@ -398,10 +400,7 @@ typesofseqs=[] #To store the type of sequences in the file.
 for contg in SeqIO.parse(sqfs, "fasta"):  #If is in fasta format, calculate some parameters for sequences with valid format.
     typeseq=seqcategory(str(contg.seq))
     if lctof==0: #If we have to analyze all the sequences, use all the valid sequences.
-        if typeseq=='invalidseq': #If invalid format, ignore this sequence.
-            print 'WARNING!: Sequence '+contg.id+' has invalid format and not taken in account.'
-            pass
-        else: #If valid format, use this sequence and calculate parameters.
+        if typeseq in ('DNA', 'RNA', 'Protein'): #If valid format, use this sequence and calculate parameters.
             typesofseqs.append(typeseq)
             currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
             numGC+=currGC
@@ -409,18 +408,25 @@ for contg in SeqIO.parse(sqfs, "fasta"):  #If is in fasta format, calculate some
             contgslen.append(currlen)
             gcs.append(currGC*100.0/currlen)
             pass
+        elif typeseq=='invalidseq': #If invalid format, ignore this sequence.
+            print 'WARNING!: Sequence '+contg.id+' has invalid format and not taken in account.'
+            pass
+        else:
+            pass
     else: #If we have a sequence length as cut-off, use all the valid sequences in the subset.
         if len(contg.seq)>=lctof: #If the sequence length pass the cut-off, use this sequence (if valid).
-            if typeseq=='invalidseq': #If invalid format, ignore this sequence and continue.
-                print 'WARNING!: Sequence '+contg.id+' has invalid format and not taken in account.'
-                pass
-            else: #If valid format, use this sequence and calculate parameters.
+            if typeseq in ('DNA', 'RNA', 'Protein'): #If valid format, use this sequence and calculate parameters.
                 typesofseqs.append(typeseq)
                 currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
                 numGC+=currGC
                 currlen=len(contg.seq)
                 contgslen.append(currlen)
                 gcs.append(currGC*100.0/currlen)
+                pass
+            elif typeseq=='invalidseq': #If invalid format, ignore this sequence and continue.
+                print 'WARNING!: Sequence '+contg.id+' has invalid format and not taken in account.'
+                pass
+            else:
                 pass
         else: #If the sequence length does not pass the cut-off, ignore this sequence and continue.
             pass
@@ -500,5 +506,4 @@ if testval:
 else:
     print 'Thank you!'
     print '- '*34+'-'
-    os.system('pause')
     exitval()
