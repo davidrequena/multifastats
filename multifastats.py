@@ -155,7 +155,6 @@ This contains each single sequence stats:
 '''
 #=========================================================================#
 usersys=platform.system()
-print usersys
 def exitval():
     if usersys=='Windows':
         os.system('pause')
