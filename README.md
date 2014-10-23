@@ -166,4 +166,4 @@ residues in the multifasta by a given file name inside the script.
 
 ...Available coming soon!!!
 
-Requests for new options are wellcome!
+Requests for new options are welcome!
