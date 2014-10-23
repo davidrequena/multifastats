@@ -117,7 +117,7 @@ residues in the multifasta by a given file name inside the script.
 - Top Blast-Hit for each single sequence (given certain parameters).
 - 'TAB' autocompletion in Windows.
 ...Available coming soon!!!
-Requests for new options are wellcome!
+Requests for new options are welcome!
 ===============================================================================
 '''
 docinfo='''
