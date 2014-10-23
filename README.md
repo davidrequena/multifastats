@@ -1,7 +1,7 @@
 multifastats
 ============
 
-Multifastats: Multi-Fasta Sequence Stats. Program based in a python script, to calculate basic statistics and filters (N50, %GC, length, types, molecular weight) for a set of 'fasta' sequences (and optionally for each single sequence too), giving some outputs. This will run in Windows, Linux and Mac OS.
+Multifastats: Multi-Fasta Sequence Stats. Free program based in a python script, to calculate basic statistics and filters (N50, %GC, length, types, molecular weight) for a set of 'fasta' sequences (and optionally for each single sequence too), giving some outputs. This will run in Windows, Linux and Mac OS.
 
 -------------------------------------------------------------------------------
 
