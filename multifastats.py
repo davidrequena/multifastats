@@ -140,7 +140,7 @@ For sets of sequences, the parameters calculated are:
 ----------------------------------------
 For each sequence, the parameters calculated are:
 
-A .csv file is write in the current working directory: singlst_(FILENAME)_(TIME).csv'
+A .csv file is write in the current working directory: sganl_(FILENAME)_(TIME).csv'
 This contains each single sequence stats:
 
 - N: Number of the sequence in the set of sequences.
