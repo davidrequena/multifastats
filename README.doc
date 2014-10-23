@@ -57,8 +57,8 @@ follows:
 >>~$ python multifastats.py -f (inputfile)
 
 * -f (or --file)	:	Allows to give an input file name. In the above line, replace
-				(inputfile) with the name of your file (with extension). An
-				example file name would be: myseq.fasta
+				(inputfile) with the name of your file (including the extension).
+				An example file name would be: myseq.fasta
 
 You will add some options after the (inputfile) name, like:
 	
