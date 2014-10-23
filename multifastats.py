@@ -32,9 +32,12 @@ it from command-line as follows: >>~$ python multifastats.py
 to be given from the beggining.
 To use the program in this mode, run the script from command-line as follows:
 >>~$ python multifastats.py -f (inputfile)
--f (or --file) allows to give an input file name. In the above line, replace
-(inputfile) with the name of your file (with extension), like: myseq.fasta
+-f (or --file): \tallows to give an input file name. In the above line,
+\t\t\treplace (inputfile) with the name of your file
+\t\t\t(including the extension), like: myseq.fasta
+
 You will add some options after the (inputfile) name, like:
+
 -l (or --length):\tAdd a cutf-off for the sequences length to be analyzed:
 \t\t\tgreater or equal to this value.
 \t\t\tOnly positive numbers allowed!
@@ -64,7 +67,7 @@ You will do that with the following commands in the linux terminal:
 Then, you will call the program from any location in your user. So, instead to
 write '>>~$ python multifastats.py' you just need to write '>>~$ multifasta.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Version 1.4, 23-Oct-2014. Made by David Requena. Laboratory of Bioinformatics
+Version 1.4.1, 23-Oct-2014. Made by David Requena. Laboratory of Bioinformatics
 and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
 https://github.com/lbbm-upch/multifastats
@@ -85,7 +88,7 @@ Thank you!
 docver = '''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------
-Version 1.4 (23-Oct-2014), revised by David Requena. LBBM, UPCH. Lima, Peru.
+Version 1.4.1 (23-Oct-2014), revised by David Requena. LBBM, UPCH. Lima, Peru.
 '''
 docnot = '''
 ===============================================================================
@@ -94,6 +97,8 @@ docnot = '''
 Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
+- Version 1.4.1 (D.R. 23-Oct-2014):
+Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
 Adding length cut-off, indicate type(s) of sequences and Windows compatibility.
 Public release in GitHub (under MIT License).
@@ -173,7 +178,7 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     print 'Multifastats: Multi-Fasta Sequence Stats'
     print '-'*41
     print 'Show basic genomic statistics for a given set of sequences\nand optionally for each single sequence, too.'
-    print 'Made by D.R. LBBM, UPCH. Version 1.4, 23-Oct-2014.'
+    print 'Made by D.R. LBBM, UPCH. Version 1.4.1, 23-Oct-2014.'
     mainout=1
     singinp=1
     maininp=1
@@ -259,7 +264,7 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
         pass
     while maininp: #If we are in the user-interactive mode to input multifasta file, this continue asking for an existing file name in the directory as input file:
         print "-"*79+"\nTO RUN: Just write the name of the file you want to analyze."
-        print "See 'help' giving the options '-h' or '--help' below, or from\nthe command-line as follows: >>> python multifastats.py -h"
+        print "See 'help' giving the options '-h' or '--help' below, or from\nthe command-line as follows: >>~$ python multifastats.py -h"
         if usersys=='Windows':
             print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
         else:
