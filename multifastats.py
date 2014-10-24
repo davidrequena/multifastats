@@ -18,8 +18,9 @@ I made this program with biopython v1.64 but other versions will be compatible.
 
 USAGE:
 - - -
-The script has to be in the same directory of your file to analyze. If you
-want to use the program from any location, please read the 'Optional' section.
+The script multifastats.py has to be in the same directory of your file to
+analyze. If you want to use the program from any location, please read the
+'Optional' section.
 
 There are two modes:
 1) 'User-Interactive': The program will ask for a file or option in each step.
@@ -64,8 +65,9 @@ autocomplete the name of any file (not only python scripts).
 You will do that with the following commands in the linux terminal:
 >>~$ sudo chmod +xr multifastats.py
 >>~$ sudo mv multifastats.py /usr/local/bin
-Then, you will call the program from any location in your user. So, instead to
-write '>>~$ python multifastats.py' you just need to write '>>~$ multifasta.py'
+Then, you will call the program from any location in your user, directly from
+the command line. So, instead to write '>>~$ python multifastats.py' you just
+need to write '>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Version 1.4.1, 23-Oct-2014. Made by David Requena. Laboratory of Bioinformatics
 and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
@@ -145,7 +147,8 @@ For sets of sequences, the parameters calculated are:
 ----------------------------------------
 For each sequence, the parameters calculated are:
 
-A .csv file is write in the current working directory: sganl_(FILENAME)_(TIME).csv'
+A .csv file is write in the current working directory:
+sganl_(FILENAME)_(TIME).csv
 This contains each single sequence stats:
 
 - N: Number of the sequence in the set of sequences.
