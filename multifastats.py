@@ -93,11 +93,11 @@ improves with us! Write to: david.requena.a@upch.pe
 Thank you!
 ===============================================================================
 '''
-dochelp=dochpini+vers+dochpend
-docver = '''
+docvrini = '''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------
-'''+vers+''' Revised by David Requena. LBBM, UPCH. Lima, Peru.
+'''
+docvrend=''' Revised by David Requena. LBBM, UPCH. Lima, Peru.
 '''
 docnot = '''
 ===============================================================================
@@ -170,6 +170,8 @@ This contains each single sequence stats:
   http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
 ===============================================================================
 '''
+dochelp=dochpini+vers+dochpend
+docver=docvrini+vers+docvrend
 #=========================================================================#
 usersys=platform.system()
 def exitval():
