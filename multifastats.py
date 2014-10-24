@@ -283,7 +283,7 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
 #            print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
 #       else:
 #            print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
-		print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
+	print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
         filename=raw_input("File name or Option: ")
         options=('h','-h','help','-help','--help','v','-v','version','-version','--version','i','-i','info','-info','--info','n','-n','notes','-notes','--notes')
         if filename.lower() in options:
