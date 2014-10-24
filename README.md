@@ -8,7 +8,7 @@ single sequence too).
 
 -------------------------------------------------------------------------------
 
->Version 1.4.1, 23-Oct-2014.
+>Version 1.4.2, 24-Oct-2014.
 Made by David Requena. Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
@@ -27,9 +27,14 @@ and optionally for each single sequence, too.
 REQUIREMENTS:
 - - - - - - -
 To run this program, python 2.7 and the following packages are required:
-- biopython -> http://biopython.org/wiki/Download
+* biopython - http://biopython.org/wiki/Download
+* pyreadline (for Windows and Mac) - https://pypi.python.org/pypi/pyreadline/
 
-I made this program with biopython v1.64 but other versions will be compatible.
+Preferably, use python v2.7 32-bits because Biopython is only compatible with
+x86 but not x64 (a numpy issue). So, you have to use the pyreadline 32-bits
+version. I made this program with biopython v1.64 and pyreadline v2.0, but
+other versions will be compatible.
+
 - - - -
 USAGE:
 - - - -
@@ -146,6 +151,8 @@ This contains each single sequence stats:
 *** VERSION NOTES ***
 -------------------------------------------------------------------------------
 History:
+- Version 1.4.2 (D.R. 24-Oct-2014):
+Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
 Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
