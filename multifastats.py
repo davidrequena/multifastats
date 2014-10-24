@@ -173,6 +173,8 @@ This contains each single sequence stats:
 '''
 #dochelp=dochpini+vrinfo+dochpend
 #docver=docvrini+vrinfo+docvrend
+dochelp=''
+docver=''
 #=========================================================================#
 usersys=platform.system()
 def exitval():
