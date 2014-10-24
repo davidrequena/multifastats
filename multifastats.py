@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os, sys, platform
 vers='Version 1.4.2, 24-Oct-2014.'
-dochelp='''
+dochpini='''
 ===============================================================================
 *** HELP INFO ***
 ===============================================================================
@@ -74,7 +74,8 @@ Then, you will call the program from any location in your user, directly from
 the command line. So, instead to write '>>~$ python multifastats.py' you just
 need to write '>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-'''+vers+''' Made by David Requena. Laboratory of Bioinformatics
+'''
+dochpend=''' Made by David Requena. Laboratory of Bioinformatics
 and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
 https://github.com/lbbm-upch/multifastats
@@ -92,6 +93,7 @@ improves with us! Write to: david.requena.a@upch.pe
 Thank you!
 ===============================================================================
 '''
+dochelp=dochpini+vers+dochpend
 docver = '''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------
