@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os, sys, platform
 vers='Version 1.4.2, 24-Oct-2014.'
+vrinfo='''Version 1.4.2, 24-Oct-2014.'''
 dochpini='''
 ===============================================================================
 *** HELP INFO ***
@@ -170,8 +171,8 @@ This contains each single sequence stats:
   http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
 ===============================================================================
 '''
-dochelp=dochpini+vers+dochpend
-docver=docvrini+vers+docvrend
+dochelp=dochpini+vrinfo+dochpend
+docver=docvrini+vrinfo+docvrend
 #=========================================================================#
 usersys=platform.system()
 def exitval():
