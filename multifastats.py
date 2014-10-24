@@ -171,8 +171,8 @@ This contains each single sequence stats:
   http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
 ===============================================================================
 '''
-dochelp=dochpini+vrinfo+dochpend
-docver=docvrini+vrinfo+docvrend
+#dochelp=dochpini+vrinfo+dochpend
+#docver=docvrini+vrinfo+docvrend
 #=========================================================================#
 usersys=platform.system()
 def exitval():
@@ -201,10 +201,10 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     pass
 elif len(sys.argv)==2: #This is the case when the script receive arguments asking for information.
     if sys.argv[1].lower() in ('h','-h','help','-help','--help'):
-        print dochelp
+        print dochpini,docvrinfo,dochpend
         exitval()
     elif sys.argv[1].lower() in ('v','-v','version','-version','--version'):
-        print docver
+        print docvrini,docvrinfo,docvrend
         exitval()
     elif sys.argv[1].lower() in ('i','-i','info','-info','--info'):
         print docinfo
