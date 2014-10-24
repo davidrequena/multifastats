@@ -162,6 +162,8 @@ This contains each single sequence stats:
 *** VERSION NOTES ***
 -------------------------------------------------------------------------
 History:
+- Version 1.4.2 (D.R. 24-Oct-2014):
+  Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
   Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
