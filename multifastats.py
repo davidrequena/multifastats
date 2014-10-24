@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os, sys, platform
+vers='Version 1.4.2, 23-Oct-2014.'
 dochelp='''
 ===============================================================================
 *** HELP INFO ***
@@ -73,7 +74,7 @@ Then, you will call the program from any location in your user, directly from
 the command line. So, instead to write '>>~$ python multifastats.py' you just
 need to write '>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Version 1.4.1, 23-Oct-2014. Made by David Requena. Laboratory of Bioinformatics
+'''+vers+''' Made by David Requena. Laboratory of Bioinformatics
 and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
 https://github.com/lbbm-upch/multifastats
@@ -94,7 +95,7 @@ Thank you!
 docver = '''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------
-Version 1.4.1 (23-Oct-2014), revised by David Requena. LBBM, UPCH. Lima, Peru.
+'''+vers+''' Revised by David Requena. LBBM, UPCH. Lima, Peru.
 '''
 docnot = '''
 ===============================================================================
@@ -103,6 +104,8 @@ docnot = '''
 Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
+- Version 1.4.2 (D.R. 24-Oct-2014):
+.Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
 Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
@@ -185,7 +188,7 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     print 'Multifastats: Multi-Fasta Sequence Stats'
     print '-'*41
     print 'Show basic genomic statistics for a given set of sequences\nand optionally for each single sequence, too.'
-    print 'Made by D.R. LBBM, UPCH. Version 1.4.1, 23-Oct-2014.'
+    print 'Made by D.R. LBBM, UPCH. '+vers
     mainout=1
     singinp=1
     maininp=1
@@ -279,11 +282,10 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
     while maininp: #If we are in the user-interactive mode to input multifasta file, this continue asking for an existing file name in the directory as input file:
         print "-"*79+"\nTO RUN: Just write the name of the file you want to analyze."
         print "See 'help' giving the options '-h' or '--help' below, or from\nthe command-line as follows: >>~$ python multifastats.py -h"
-#        if usersys=='Windows':
-#            print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
-#       else:
-#            print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
-	print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
+        if usersys in ('Windows','Linux'):
+            print "(autocomplete allowed using 'TAB' key)"
+       else:
+            print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
         filename=raw_input("File name or Option: ")
         options=('h','-h','help','-help','--help','v','-v','version','-version','--version','i','-i','info','-info','--info','n','-n','notes','-notes','--notes')
         if filename.lower() in options:
@@ -458,7 +460,7 @@ if len(contgslen)>0:
     avelen=totlen*1.0/numseqs
     totGC=numGC*100.0/totlen
 else:
-    print "There is no sequence to analyze. Check your file and the value of 'l' given"
+    print "There is no sequence to analyze. Check your file and the value of 'l' (length) given"
     exit()
 #=========================================================================#
 if mainout:
@@ -478,7 +480,7 @@ if mainout:
     pass
 else:
     print '- '*34+'-'
-    print 'Program:\t\tmultifastats.py v1.4, rev by D.R. 22-Oct-2014'
+    print 'Program:\t\tmultifastats.py. '+vers+' Rev by D.R.'
     print 'Filename:\t\t'+filename
     if lctof>0:
         print '***Only analyzing the sequences of Length>='+str(lctof)
