@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os, sys, platform
-vers='Version 1.4.2, 23-Oct-2014.'
+vers='Version 1.4.2, 24-Oct-2014.'
 dochelp='''
 ===============================================================================
 *** HELP INFO ***
@@ -105,7 +105,7 @@ Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
 - Version 1.4.2 (D.R. 24-Oct-2014):
-.Adding autocomplete using tab in Windows and MAC OS.
+Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
 Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
