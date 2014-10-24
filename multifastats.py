@@ -14,7 +14,11 @@ REQUIREMENTS:
 - - - - - - -
 To run this program, python 2.7 and the following packages are required:
 * biopython - http://biopython.org/wiki/Download
-I made this program with biopython v1.64 but other versions will be compatible.
+* pyreadline (for Windows and Mac) - https://pypi.python.org/pypi/pyreadline/
+Preferably, use python v2.7 32-bits because Biopython is only compatible with
+x86 but not x64 (a numpy issue). So, you have to use the pyreadline 32-bits
+version. I made this program with biopython v1.64 and pyreadline v2.0, but
+other versions will be compatible.
 
 USAGE:
 - - -
@@ -264,14 +268,22 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
         readline.parse_and_bind("tab: complete")
         readline.set_completer(complete)
     except ImportError: #If you have not the readline package, autocompletion disabled.
-        pass
+    	try:
+            import pyreadline as readline
+            readline.parse_and_bind("tab: complete")
+            readline.set_completer(complete)
+        except ImportError:
+            print "\n"+"*"*79+"\nWARNING!: The readline or pyreadline (32bits x86) packages are necesary to run.\nYou will download it from: https://pypi.python.org/pypi/pyreadline/\nSee the 'help' file below."+"*"*79
+            print dochelp
+            exitval()
     while maininp: #If we are in the user-interactive mode to input multifasta file, this continue asking for an existing file name in the directory as input file:
         print "-"*79+"\nTO RUN: Just write the name of the file you want to analyze."
         print "See 'help' giving the options '-h' or '--help' below, or from\nthe command-line as follows: >>~$ python multifastats.py -h"
-        if usersys=='Windows':
-            print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
-        else:
-            print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
+#        if usersys=='Windows':
+#            print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
+#       else:
+#            print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
+		print "(Autocomplete allowed ONLY IN LINUX, using 'TAB' key)"
         filename=raw_input("File name or Option: ")
         options=('h','-h','help','-help','--help','v','-v','version','-version','--version','i','-i','info','-info','--info','n','-n','notes','-notes','--notes')
         if filename.lower() in options:
