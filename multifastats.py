@@ -169,7 +169,7 @@ This contains each single sequence stats:
 - %GC: Percentage of G, C or S (G or C) nucleotides (no case sensitive) in the
   sequence.
 - Mol Weight: Molecular weight of the sequence, calculated according the
-  molecular_weight() function from Biopython SeqUtils: (does not works with
+  molecular_weight() function from Biopython SeqUtils (does not works with
   ambiguous residues). http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
 ===============================================================================
 '''
