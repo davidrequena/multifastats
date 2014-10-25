@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 import os, sys, platform
 vers='Version 1.4.2, 24-Oct-2014.'
-vrinfo='''Version 1.4.2, 24-Oct-2014.'''
+versnote='''- Version 1.4.2 (D.R. 24-Oct-2014):
+  Adding autocomplete using tab in Windows and MAC OS.'''
+#=========================================================================#
 dochpini='''
 ===============================================================================
 *** HELP INFO ***
@@ -74,10 +76,9 @@ You will do that with the following commands in the linux terminal:
 Then, you will call the program from any location in your user, directly from
 the command line. So, instead to write '>>~$ python multifastats.py' you just
 need to write '>>~$ multifastats.py'
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-'''
-dochpend=''' Made by David Requena. Laboratory of Bioinformatics
-and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'''
+dochpmid='Made by David Requena. Laboratory of Bioinformatics'
+dochpend='''and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
 https://github.com/lbbm-upch/multifastats
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -96,34 +97,31 @@ Thank you!
 '''
 docvrini = '''
    Multifastats: Multi-Fasta Sequence Stats
-----------------------------------------------
-'''
-docvrend=''' Revised by David Requena. LBBM, UPCH. Lima, Peru.
-'''
-docnot = '''
+----------------------------------------------'''
+docvrend = ' Revised by David Requena. LBBM, UPCH. Lima, Peru.'
+docntini = '''
 ===============================================================================
 *** VERSION NOTES ***
 ===============================================================================
 Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
-- Version 1.4.2 (D.R. 24-Oct-2014):
-Adding autocomplete using tab in Windows and MAC OS.
-- Version 1.4.1 (D.R. 23-Oct-2014):
-Including the revisions after testing of many users.
+'''
+docntend = '''- Version 1.4.1 (D.R. 23-Oct-2014):
+  Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
-Adding length cut-off, indicate type(s) of sequences and Windows compatibility.
-Public release in GitHub (under MIT License).
+  Adding length cut-off, indicate type(s) of sequences and Windows
+  compatibility. Public release in GitHub (under MIT License).
 - Version 1.3 (D.R. 22-Oct-2014):
-Adding command-line mode with -f, -s and info options. And full documentation.
+  Adding command-line mode with -f, -s and info options. And full documentation.
 - Version 1.2 (D.R. 21-Oct-2014):
-Adding autocomplete using tab, single sequences analysis and time-csv output
-in current directory.
+  Adding autocomplete using tab, single sequences analysis and time-csv output
+  in current directory.
 - Version 1.1 (D.R. 21-Oct-2014):
-Adding user-interactive mode, min, max, average length and 0.00 format.
+  Adding user-interactive mode, min, max, average length and 0.00 format.
 - Version 1.0 (D.R. 20-Oct-2014):
-The basic version, just calculate the N50, %GC, number of sequences and total
-residues in the multifasta by a given file name inside the script.
+  The basic version, just calculate the N50, %GC, number of sequences and total
+  residues in the multifasta by a given file name inside the script.
 
 ***For the Version 1.5, I'm implementing the following options:
 - Filter by sequence type.
@@ -171,10 +169,6 @@ This contains each single sequence stats:
   http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
 ===============================================================================
 '''
-#dochelp=dochpini+vrinfo+dochpend
-#docver=docvrini+vrinfo+docvrend
-dochelp=''
-docver=''
 #=========================================================================#
 usersys=platform.system()
 def exitval():
@@ -203,16 +197,21 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     pass
 elif len(sys.argv)==2: #This is the case when the script receive arguments asking for information.
     if sys.argv[1].lower() in ('h','-h','help','-help','--help'):
-        print dochpini,docvrinfo,dochpend
+        print dochpini
+        print vers+dochpmid
+        print dochpend
         exitval()
     elif sys.argv[1].lower() in ('v','-v','version','-version','--version'):
-        print docvrini,docvrinfo,docvrend
+        print docvrini
+        print vers+docvrend
         exitval()
     elif sys.argv[1].lower() in ('i','-i','info','-info','--info'):
         print docinfo
         exitval()
     elif sys.argv[1].lower() in ('n','-n','notes','-notes','--notes'):
-        print docnot
+        print docntini
+        print versnote
+        print docntend
         exitval()
     else: #We will add more options for info in the future versions.
         print "Incorrect way to give the arguments. See 'help' with '-h' or '--help' option."
@@ -284,7 +283,9 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
             readline.set_completer(complete)
         except ImportError:
             print "\n"+"*"*79+"\nWARNING!: The readline or pyreadline (32bits x86) packages are necesary to run.\nYou will download it from: https://pypi.python.org/pypi/pyreadline/\nSee the 'help' file below."+"*"*79
-            print dochelp
+			print dochpini
+        	print vers+dochpmid
+        	print dochpend
             exitval()
     while maininp: #If we are in the user-interactive mode to input multifasta file, this continue asking for an existing file name in the directory as input file:
         print "-"*79+"\nTO RUN: Just write the name of the file you want to analyze."
@@ -299,13 +300,18 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
             maininp=0 #This means that we get a correct file name or option, so we will use this to continue.
             lctinp=0
             if filename.lower() in ('h','-h','help','-help','--help'):
-                print dochelp
+                print dochpini
+        		print vers+dochpmid
+        		print dochpend
             elif filename.lower() in ('v','-v','version','-version','--version'):
-                print docver
+                print docvrini
+        		print vers+docvrend
             elif filename.lower() in ('i','-i','info','-info','--info'):
                 print docinfo
             elif filename.lower() in ('n','-n','notes','-notes','--notes'):
-                print docnot
+                print docntini
+        		print versnote
+        		print docntend
             else: #We will add more options for info in the future versions.
                 print "\nIncorrect way to give the arguments. See 'help' with '-h' or '--help' option."
             exitval()
