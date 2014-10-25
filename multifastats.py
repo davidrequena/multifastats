@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os, sys, platform
+#=========================================================================#
+#To update in every release:
 vers='Version 1.4.2, 24-Oct-2014.'
 versnote='''- Version 1.4.2 (D.R. 24-Oct-2014):
   Adding autocomplete using tab in Windows and MAC OS.'''
@@ -125,14 +127,14 @@ docntend='''- Version 1.4.1 (D.R. 23-Oct-2014):
   The basic version, just calculate the N50, %GC, number of sequences and total
   residues in the multifasta by a given file name inside the script.
 
-***For the Version 1.5, I'm implementing the following options:
+***For the Version 1.5, I'm implementing the following new options:
 - Filter by sequence type.
 - Upper length cut-off.
 - Filter by any string in sequence name.
 - A fasta output of the selected subset of sequences.
 - The pseudomolecule output.
 - Top Blast-Hit for each single sequence (given certain parameters).
-- 'TAB' autocompletion in Windows.
+
 ...Available coming soon!!!
 Requests for new options are welcome!
 ===============================================================================
