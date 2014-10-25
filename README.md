@@ -27,8 +27,9 @@ and optionally for each single sequence, too.
 REQUIREMENTS:
 - - - - - - -
 To run this program, python 2.7 and the following packages are required:
-* biopython - http://biopython.org/wiki/Download
-* pyreadline (for Windows and Mac) - https://pypi.python.org/pypi/pyreadline/
+* python 2.7 x86 https://www.python.org/download/releases/2.7.8/
+* biopython http://biopython.org/wiki/Download
+* pyreadline (to use the program in Windows and Mac) https://pypi.python.org/pypi/pyreadline/
 
 Preferably, use python v2.7 32-bits because Biopython is only compatible with
 x86 but not x64 (a numpy issue). So, you have to use the pyreadline 32-bits
