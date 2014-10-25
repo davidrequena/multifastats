@@ -291,8 +291,8 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
         print "-"*79+"\nTO RUN: Just write the name of the file you want to analyze."
         print "See 'help' giving the options '-h' or '--help' below, or from\nthe command-line as follows: >>~$ python multifastats.py -h"
         if usersys in ('Windows','Linux'):
-            print "(autocomplete allowed using 'TAB' key)"
-       else:
+        	print "(autocomplete allowed using 'TAB' key)"
+        else:
             print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
         filename=raw_input("File name or Option: ")
         options=('h','-h','help','-help','--help','v','-v','version','-version','--version','i','-i','info','-info','--info','n','-n','notes','-notes','--notes')
@@ -372,7 +372,7 @@ def N50(lenlist):
     lenlist.sort()
     wghtlist = []
     for i in lenlist:
-        wghtlist += [i]*i
+    	wghtlist += [i]*i
     # Take the median of the weighted list of lengths:
     if len(wghtlist) % 2 == 0:
         return float(wghtlist[len(wghtlist)/2] + wghtlist[len(wghtlist)/2-1])/2
