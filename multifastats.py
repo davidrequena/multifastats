@@ -95,11 +95,11 @@ improves with us! Write to: david.requena.a@upch.pe
 Thank you!
 ===============================================================================
 '''
-docvrini = '''
+docvrini='''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------'''
-docvrend = ' Revised by David Requena. LBBM, UPCH. Lima, Peru.'
-docntini = '''
+docvrend=' Revised by David Requena. LBBM, UPCH. Lima, Peru.'
+docntini='''
 ===============================================================================
 *** VERSION NOTES ***
 ===============================================================================
@@ -107,7 +107,7 @@ Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
 '''
-docntend = '''- Version 1.4.1 (D.R. 23-Oct-2014):
+docntend='''- Version 1.4.1 (D.R. 23-Oct-2014):
   Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
   Adding length cut-off, indicate type(s) of sequences and Windows
@@ -301,17 +301,17 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
             lctinp=0
             if filename.lower() in ('h','-h','help','-help','--help'):
                 print dochpini
-        		print vers+dochpmid
-        		print dochpend
+                print vers+dochpmid
+                print dochpend
             elif filename.lower() in ('v','-v','version','-version','--version'):
                 print docvrini
-        		print vers+docvrend
+                print vers+docvrend
             elif filename.lower() in ('i','-i','info','-info','--info'):
                 print docinfo
             elif filename.lower() in ('n','-n','notes','-notes','--notes'):
                 print docntini
-        		print versnote
-        		print docntend
+                print versnote
+                print docntend
             else: #We will add more options for info in the future versions.
                 print "\nIncorrect way to give the arguments. See 'help' with '-h' or '--help' option."
             exitval()
@@ -350,7 +350,7 @@ except ImportError:
     exitval()
 #=========================================================================#
 def seqcategory(oneseq):
-    seqtype='tochange'
+    seqtype=''
     seqDNA=Seq(oneseq,IUPACAmbiguousDNA())
     seqRNA=Seq(oneseq,IUPACAmbiguousRNA())
     seqProt=Seq(oneseq,ExtendedIUPACProtein())
@@ -422,8 +422,8 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
         newlinecsv=str(count)+','+str(idsnocom[i])+','+str(contgslen[i])+','+"{0:.2f}".format(gcs[i])+','+"{0:.2f}".format(molwght[i])+'\n' #If we want to use the function independently, we need to change this line to: #newlinecsv=str(count)+','+str(idsnocom[i])+','+str(listcntgslen[i])+','+"{0:.2f}".format(listgcs[i])+','+"{0:.2f}".format(molwght[i])+'\n'
         #print newlinecsv #I left this line because maybe someone wants to see the output in the python interpreter.
         outpbyseqcsv.write(newlinecsv)
-    multifs.close()
-    return currTime
+		multifs.close()
+		return currTime
 #=========================================================================#
 sqfs = open(filename,"rU")
 numGC=0
