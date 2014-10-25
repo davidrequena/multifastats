@@ -477,7 +477,7 @@ if len(contgslen)>0:
     avelen=totlen*1.0/numseqs
     totGC=numGC*100.0/totlen
 else:
-    print "There is no sequence to analyze. Check your file and the value of 'l' (length) given"
+    print "There is no sequence to analyze. Check your file and the value of 'l' (length) given."
     exitval()
 #=========================================================================#
 if mainout:
