@@ -191,7 +191,8 @@ mainout=0 #This variable is the state of the type of output for the multifasta a
 singinp=0 #This variable is the state of the manual input requirement for the single analysis (1=YES/0=NO)
 testval=1 #This variable is the state of do or not do the single analysis (1=YES/0=NO)
 lctinp=0 #This variable is the state of the manual input requirement for the length cut-off
-lctof=0 #This variable is the length cut-off (0 means no cut-off)
+minlen=0
+maxlen=0
 if len(sys.argv)==1: #This is the case when the script NO receive arguments (***THE "USER-INTERACTIVE" SCENARIO***).
     print '- '*29+'-'
     print 'Multifastats: Multi-Fasta Sequence Stats'
@@ -333,19 +334,64 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
 if lctinp:
     clinp=0 #This variable allows to verify if a valid value for L is given.
     print '- '*29+'-'
-    print "Do you want to analyze all the sequences? Or just a subset\nof the sequences greater or equal of a length 'L'?"
-    while clinp==0:
-        tochklc=raw_input("Please, give a positive value for L (or 0 to analyze all):")
-        try:
-            if (float(tochklc)>=0):
-                clinp=1
-                lctof=float(tochklc)
-            else:
-                print "Incorrect cut-off value for length."
+    print "Do you want to analyze all the sequences? Or just a subset\nof them between a minimum and a maximum length?"
+    ctlnopt=raw_input("Please, choose one option: (1, 2, 3 or 4)\n1) Analyze all the sequences\n2) A subset above a minimum sequence length (Lmin)\n3) A subset below a maximum sequence length (Lmax)\n4) A subset between a Lmin and Lmax values.")
+    while (ctlnopt not in (1, 2, 3 or 4)):
+        ctlnopt=raw_input("Bad input given. Please, choose one option: (1, 2, 3 or 4)\n1) Analyze all the sequences\n2) A subset above a minimum sequence length (Lmin)\n3) A subset below a maximum sequence length (Lmax)\n4) A subset between a Lmin and Lmax values.")
+    if ctlnopt=1:
+        pass
+    elif ctlnopt=2:
+        while clinp==0:
+            tochklc=raw_input("Please, give a positive value for the minimum sequence length to analyze (or 0 to not set a minimum value):")
+            try:
+                if (float(tochklc)>=0):
+                    clinp=1 #Correct value of L given, continue.
+                    minlen=float(tochklc)
+                else:
+                    print "Incorrect value provided for length."
+                    pass
+            except ValueError:
+                print "A positive number is required as value for length."
                 pass
-        except ValueError:
-            print "A number is required as cut-off value for length."
-            pass
+    elif ctlnopt=3:
+        while clinp==0:
+            tochklc=raw_input("Please, give a positive value for the maximum sequence length to analyze (or 0 to not set a maximum value):")
+            try:
+                if (float(tochklc)>=0):
+                    clinp=1 #Correct value of L given, continue.
+                    maxlen=float(tochklc)
+                else:
+                    print "Incorrect value provided for length."
+                    pass
+            except ValueError:
+                print "A positive number is required as a value for length."
+                pass
+    elif ctlnopt=4:
+        while clinp==0:
+            tochklc=raw_input("Please, give a positive value for the minimum sequence length to analyze (or 0 to not set a minimum value):")
+            try:
+                if (float(tochklc1)>=0):
+                    clinp=1 #Correct value of L given, continue.
+                    minlen=float(tochklc1)
+                else:
+                    print "Incorrect value provided for length."
+                    pass
+            except ValueError:
+                print "A positive number is required as a value for length."
+                pass
+        clinp=0 #Give 0 to clinp to evaluate a new input (now for Lmax).
+        while clinp==0:
+            tochklc=raw_input("Please, give a positive value for the maximum sequence length to analyze (or 0 to not set a maximum value):")
+            try:
+                if (float(tochklc)>=0):
+                    clinp=1 #Correct value of L given, continue.
+                    maxlen=float(tochklc)
+                else:
+                    print "Incorrect value provided for length."
+                    pass
+            except ValueError:
+                print "A positive number is required as a value for length."
+                pass
 #=========================================================================#
 #Import some extra libraries to use in the next procedures.
 try:
@@ -370,9 +416,29 @@ def seqcategory(oneseq):
         if Alphabet._verify_alphabet(seqProt):
             seqtype='protein'
         else:
-            seqtype='invalidseq'
-            pass
+            seqtype='noseq'
     return seqtype
+#=========================================================================#
+def lenfilter(strseq,strid,lmin,lmax):
+    typeseq=seqcategory(strseq)
+    if (lmax==0 and len(strseq)>=lmin):
+        if typeseq in ('DNA', 'RNA', 'protein'): #If valid format, use this sequence and calculate parameters.
+            return 1, typeseq
+        elif typeseq=='noseq': #If invalid format, ignore this sequence.
+            print 'WARNING!: Sequence '+strid+' has invalid format and not taken in account.'
+            return 0, ''
+        else:
+            return 0, ''
+    elif len(strseq) in range(lmin,lmax+1):
+        if typeseq in ('DNA', 'RNA', 'protein'): #If valid format, use this sequence and calculate parameters.
+            return 1, typeseq
+        elif typeseq=='noseq': #If invalid format, ignore this sequence.
+            print 'WARNING!: Sequence '+strid+' has invalid format and not taken in account.'
+            return 0, ''
+        else:
+            return 0, ''
+    else:
+        return 0, ''
 #=========================================================================#
 def N50(lenlist):
     # N50 calculation, based on the Broad Institute definition:
@@ -400,7 +466,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
     for indsq in SeqIO.parse(multifs, "fasta"):
         typeindsq=seqcategory(str(indsq.seq))
         if lncut==0:
-            if typeindsq=='invalidseq': #If invalid format, ignore this sequence.
+            if typeindsq=='noseq': #If invalid format, ignore this sequence.
                 pass
             else:
                 newid = indsq.id.replace(",", " ")
@@ -411,7 +477,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                     molwght.append(0)
         else:
             if len(indsq.seq)>=lncut:
-                if typeindsq=='invalidseq': #If invalid format, ignore this sequence.
+                if typeindsq=='noseq': #If invalid format, ignore this sequence.
                     pass
                 else:
                     newid = indsq.id.replace(",", " ")
@@ -438,38 +504,16 @@ contgslen=[] #To store contigs lengths.
 gcs=[] #To store %GC values.
 typesofseqs=[] #To store the type of sequences in the file.
 for contg in SeqIO.parse(sqfs, "fasta"):  #If is in fasta format, calculate some parameters for sequences with valid format.
-    typeseq=seqcategory(str(contg.seq))
-    if lctof==0: #If we have to analyze all the sequences, use all the valid sequences.
-        if typeseq in ('DNA', 'RNA', 'protein'): #If valid format, use this sequence and calculate parameters.
-            typesofseqs.append(typeseq)
-            currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
-            numGC+=currGC
-            currlen=len(contg.seq)
-            contgslen.append(currlen)
-            gcs.append(currGC*100.0/currlen)
-            pass
-        elif typeseq=='invalidseq': #If invalid format, ignore this sequence.
-            print 'WARNING!: Sequence '+contg.id+' has invalid format and not taken in account.'
-            pass
-        else:
-            pass
-    else: #If we have a sequence length as cut-off, use all the valid sequences in the subset.
-        if len(contg.seq)>=lctof: #If the sequence length pass the cut-off, use this sequence (if valid).
-            if typeseq in ('DNA', 'RNA', 'protein'): #If valid format, use this sequence and calculate parameters.
-                typesofseqs.append(typeseq)
-                currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
-                numGC+=currGC
-                currlen=len(contg.seq)
-                contgslen.append(currlen)
-                gcs.append(currGC*100.0/currlen)
-                pass
-            elif typeseq=='invalidseq': #If invalid format, ignore this sequence and continue.
-                print 'WARNING!: Sequence '+contg.id+' has invalid format and not taken in account.'
-                pass
-            else:
-                pass
-        else: #If the sequence length does not pass the cut-off, ignore this sequence and continue.
-            pass
+    evalen=lenfilter(str(contg.seq),str(contg.id),minlen,maxlen)
+    if evalen[0]: #Use the sequence if pass the filter.
+        typesofseqs.append(evalen[1])
+        currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
+        numGC+=currGC
+        currlen=len(contg.seq)
+        contgslen.append(currlen)
+        gcs.append(currGC*100.0/currlen)
+    else: #If does not pass the filter, ignore.
+        pass
 #=========================================================================#
 if len(contgslen)>0:
     types=sorted([str(x) for x in set(typesofseqs)])
@@ -484,8 +528,12 @@ else:
 #=========================================================================#
 if mainout:
     print '- '*29+'-'
-    if lctof>0:
-        print '***Only analyzing the sequences of Length>='+str(lctof)
+    if (minlen>0 and maxlen==0):
+        print '***Only analyzing the sequences of Length>='+str(minlen)
+    elif (minlen==0 and maxlen>0):
+        print '***Only analyzing the sequences of Length=<'+str(maxlen)
+    elif (minlen>0 and maxlen>0):
+        print '***Only analyzing the sequences of Length: '+str(minlen)+' =< Length =< '+str(maxlen)
     print 'Filename:\t\t'+filename
     print 'Type(s) of sequences:\t'+', '.join(types)
     print 'Number of sequence:\t'+str(numseqs)
@@ -501,8 +549,12 @@ else:
     print '- '*34+'-'
     print 'Program:\t\tmultifastats.py. '+vers+' Rev by D.R.'
     print 'Filename:\t\t'+filename
-    if lctof>0:
-        print '***Only analyzing the sequences of Length>='+str(lctof)
+    if (minlen>0 and maxlen==0):
+        print '***Only analyzing the sequences of Length>='+str(minlen)
+    elif (minlen==0 and maxlen>0):
+        print '***Only analyzing the sequences of Length=<'+str(maxlen)
+    elif (minlen>0 and maxlen>0):
+        print '***Only analyzing the sequences of Length: '+str(minlen)+' =< Length =< '+str(maxlen)
     print 'Type(s) of sequences:\t'+', '.join(types)
     print 'Number of sequences:\t'+str(numseqs)
     print 'Min length:\t\t'+str(min(contgslen))
@@ -520,7 +572,7 @@ if testval:
         while testval:
             singopt=raw_input("Do you want statistics for each single sequence?\nWrite 'Y' to calculate or 'N' to finish): ")
             if singopt.lower() in yesopt: 
-                doanlys=singanlys(filename,lctof) #While the function be nested in this script, just need one argument. If we want to use the function independently, we need to replace this line by: #doanlys=singanlys(filename,contgslen,gcs)
+                doanlys=singanlys(filename,minlen) #While the function be nested in this script, just need one argument. If we want to use the function independently, we need to replace this line by: #doanlys=singanlys(filename,contgslen,gcs)
                 print '\nDONE: A .csv file has been wrote with the single sequence\nstats in your current working directory:'
                 print '(sganl_'+filename.replace(".","")+'_'+doanlys+'.csv)'
                 print '\nThank you!'
@@ -536,7 +588,7 @@ if testval:
                 print "Bad option, try again."
                 pass
     else: #If we are in the command-line mode for single outputs, do the analysis:
-        doanlys=singanlys(filename,lctof) #While the function be nested in this script, just need one argument. If we want to use the function independently, we need to replace this line by: #doanlys=singanlys(filename,contgslen,gcs)
+        doanlys=singanlys(filename,minlen) #While the function be nested in this script, just need one argument. If we want to use the function independently, we need to replace this line by: #doanlys=singanlys(filename,contgslen,gcs)
         testval=0
         print 'A .csv file has been wrote with the single sequence stats in\nyour current working directory:'
         print '(sganl_'+filename.replace(".","")+'_'+doanlys+'.csv)'
