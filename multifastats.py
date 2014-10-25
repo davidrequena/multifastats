@@ -405,7 +405,6 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                     molwght.append(molecular_weight(indsq.seq))
                 except:
                     molwght.append(0)
-                pass
         else:
             if len(indsq.seq)>=lncut:
                 if typeindsq=='invalidseq': #If invalid format, ignore this sequence.
@@ -417,7 +416,6 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                         molwght.append(molecular_weight(indsq.seq))
                     except:
                         molwght.append(0)
-                    pass
             else:
                 pass
     count=0
@@ -427,7 +425,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
         #print newlinecsv #I left this line because maybe someone wants to see the output in the python interpreter.
         outpbyseqcsv.write(newlinecsv)
         multifs.close()
-        return currTime
+    return currTime
 #=========================================================================#
 sqfs = open(filename,"rU")
 numGC=0
