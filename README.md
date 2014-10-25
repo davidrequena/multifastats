@@ -152,31 +152,31 @@ This contains each single sequence stats:
 -------------------------------------------------------------------------------
 History:
 - Version 1.4.2 (D.R. 24-Oct-2014):
-Adding autocomplete using tab in Windows and MAC OS.
+  Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
-Including the revisions after testing of many users.
+  Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
-Adding length cut-off, indicate type(s) of sequences and Windows compatibility.
-Public available in GitHub, under the MIT License.
+  Adding length cut-off, indicate type(s) of sequences and Windows compatibility.
+  Public available in GitHub, under the MIT License.
 - Version 1.3 (D.R. 22-Oct-2014):
-Adding command-line mode with -f, -s and info options. And full documentation.
+  Adding command-line mode with -f, -s and info options.
+  Adding version, notes, help and full documentation.
 - Version 1.2 (D.R. 21-Oct-2014):
-Adding autocomplete using tab, single sequences analysis and time-csv output
-in current directory.
+  Adding autocomplete using tab, single sequences analysis and time-csv output
+  in current directory.
 - Version 1.1 (D.R. 21-Oct-2014):
-Adding user-interactive mode, min, max, average length and 0.00 format.
+  Adding user-interactive mode, min, max, average length and 0.00 format.
 - Version 1.0 (D.R. 20-Oct-2014):
-The basic version, just calculate the N50, %GC, number of sequences and total
-residues in the multifasta by a given file name inside the script.
+  The basic version, just calculate the N50, %GC, number of sequences and total
+  residues in the multifasta by a given file name inside the script.
 
-***For the Version 1.5, I'm implementing the following options:
+***For the Version 1.5, I'm implementing the following new options:
 - Filter by sequence type.
 - Upper length cut-off.
 - Filter by any string in sequence name.
 - A fasta output of the selected subset of sequences.
 - The pseudomolecule output.
 - Top Blast-Hit for each single sequence (given certain parameters).
-- 'TAB' autocompletion in Windows.
 
 ...Available coming soon!!!
 
