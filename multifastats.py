@@ -402,7 +402,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                 newid = indsq.id.replace(",", " ")
                 idsnocom.append(newid)
                 try:
-                    molwght.append(molecular_weight(indsq.seq,typeindsq))
+                    molwght.append(molecular_weight(str(indsq.seq),typeindsq))
                 except:
                     molwght.append(0)
         else:
@@ -413,7 +413,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                     newid = indsq.id.replace(",", " ")
                     idsnocom.append(newid)
                     try:
-                        molwght.append(molecular_weight(indsq.seq,typeindsq))
+                        molwght.append(molecular_weight(str(indsq.seq),typeindsq))
                     except:
                         molwght.append(0)
             else:
