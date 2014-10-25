@@ -284,8 +284,8 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
         except ImportError:
             print "\n"+"*"*79+"\nWARNING!: The readline or pyreadline (32bits x86) packages are necesary to run.\nYou will download it from: https://pypi.python.org/pypi/pyreadline/\nSee the 'help' file below."+"*"*79
 			print dochpini
-        	print vers+dochpmid
-        	print dochpend
+			print vers+dochpmid
+			print dochpend
             exitval()
     while maininp: #If we are in the user-interactive mode to input multifasta file, this continue asking for an existing file name in the directory as input file:
         print "-"*79+"\nTO RUN: Just write the name of the file you want to analyze."
