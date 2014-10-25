@@ -422,8 +422,8 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
         newlinecsv=str(count)+','+str(idsnocom[i])+','+str(contgslen[i])+','+"{0:.2f}".format(gcs[i])+','+"{0:.2f}".format(molwght[i])+'\n' #If we want to use the function independently, we need to change this line to: #newlinecsv=str(count)+','+str(idsnocom[i])+','+str(listcntgslen[i])+','+"{0:.2f}".format(listgcs[i])+','+"{0:.2f}".format(molwght[i])+'\n'
         #print newlinecsv #I left this line because maybe someone wants to see the output in the python interpreter.
         outpbyseqcsv.write(newlinecsv)
-		multifs.close()
-		return currTime
+        multifs.close()
+        return currTime
 #=========================================================================#
 sqfs = open(filename,"rU")
 numGC=0
