@@ -53,6 +53,7 @@ You will add some options after the (inputfile) name, like:
 \t\t\tIf you give 0, all sequences will be analyzed.
 -s (or --single):\tAdd the single sequence analysis.
 \t\t\tIMPORTANT: This option has to be the last given.
+
 As example, one command line with all options will be:
 >>~$ python multifastats.py -f inputfile.fasta -l 500 -s
 
@@ -77,7 +78,7 @@ Then, you will call the program from any location in your user, directly from
 the command line. So, instead to write '>>~$ python multifastats.py' you just
 need to write '>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'''
-dochpmid='Made by David Requena. Laboratory of Bioinformatics'
+dochpmid=' Made by David Requena. Laboratory of Bioinformatics'
 dochpend='''and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
 https://github.com/lbbm-upch/multifastats
