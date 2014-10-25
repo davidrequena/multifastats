@@ -281,7 +281,7 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
         readline.parse_and_bind("tab: complete")
         readline.set_completer(complete)
     except ImportError: #If you have not the readline package, autocompletion disabled.
-    	try:
+        try:
             import pyreadline as readline
             readline.parse_and_bind("tab: complete")
             readline.set_completer(complete)
