@@ -478,7 +478,7 @@ if len(contgslen)>0:
     totGC=numGC*100.0/totlen
 else:
     print "There is no sequence to analyze. Check your file and the value of 'l' (length) given"
-    exit()
+    exitval()
 #=========================================================================#
 if mainout:
     print '- '*29+'-'
