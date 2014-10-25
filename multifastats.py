@@ -99,7 +99,7 @@ Thank you!
 docvrini='''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------'''
-docvrend=' Revised by David Requena. LBBM, UPCH. Lima, Peru.'
+docvrend=' Revised by David Requena. LBBM, UPCH. Lima, Peru.\n'
 docntini='''
 ===============================================================================
 *** VERSION NOTES ***
@@ -114,7 +114,8 @@ docntend='''- Version 1.4.1 (D.R. 23-Oct-2014):
   Adding length cut-off, indicate type(s) of sequences and Windows
   compatibility. Public release in GitHub (under MIT License).
 - Version 1.3 (D.R. 22-Oct-2014):
-  Adding command-line mode with -f, -s and info options. And full documentation.
+  Adding command-line mode with -f, -s and info options.
+  Adding version, notes, help and full documentation.
 - Version 1.2 (D.R. 21-Oct-2014):
   Adding autocomplete using tab, single sequences analysis and time-csv output
   in current directory.
