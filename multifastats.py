@@ -364,7 +364,7 @@ def seqcategory(oneseq):
         seqtype='RNA'
     else:
         if Alphabet._verify_alphabet(seqProt):
-            seqtype='Protein'
+            seqtype='protein'
         else:
             seqtype='invalidseq'
             pass
@@ -402,7 +402,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                 newid = indsq.id.replace(",", " ")
                 idsnocom.append(newid)
                 try:
-                    molwght.append(molecular_weight(indsq.seq))
+                    molwght.append(molecular_weight(indsq.seq,typeindsq))
                 except:
                     molwght.append(0)
         else:
@@ -413,7 +413,7 @@ def singanlys(file,lncut): #While the function be nested in this script, just ne
                     newid = indsq.id.replace(",", " ")
                     idsnocom.append(newid)
                     try:
-                        molwght.append(molecular_weight(indsq.seq))
+                        molwght.append(molecular_weight(indsq.seq,typeindsq))
                     except:
                         molwght.append(0)
             else:
@@ -436,7 +436,7 @@ typesofseqs=[] #To store the type of sequences in the file.
 for contg in SeqIO.parse(sqfs, "fasta"):  #If is in fasta format, calculate some parameters for sequences with valid format.
     typeseq=seqcategory(str(contg.seq))
     if lctof==0: #If we have to analyze all the sequences, use all the valid sequences.
-        if typeseq in ('DNA', 'RNA', 'Protein'): #If valid format, use this sequence and calculate parameters.
+        if typeseq in ('DNA', 'RNA', 'protein'): #If valid format, use this sequence and calculate parameters.
             typesofseqs.append(typeseq)
             currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
             numGC+=currGC
@@ -451,7 +451,7 @@ for contg in SeqIO.parse(sqfs, "fasta"):  #If is in fasta format, calculate some
             pass
     else: #If we have a sequence length as cut-off, use all the valid sequences in the subset.
         if len(contg.seq)>=lctof: #If the sequence length pass the cut-off, use this sequence (if valid).
-            if typeseq in ('DNA', 'RNA', 'Protein'): #If valid format, use this sequence and calculate parameters.
+            if typeseq in ('DNA', 'RNA', 'protein'): #If valid format, use this sequence and calculate parameters.
                 typesofseqs.append(typeseq)
                 currGC=sum(contg.seq.count(x) for x in ['G', 'C', 'g', 'c', 'S', 's'])
                 numGC+=currGC
@@ -475,7 +475,7 @@ if len(contgslen)>0:
     avelen=totlen*1.0/numseqs
     totGC=numGC*100.0/totlen
 else:
-    print "There is no sequence to analyze. Check your file and the value of 'l' (length) given."
+    print "There is no sequence to analyze. Please, check your file and\nthe value of 'l' (length) given."
     exitval()
 #=========================================================================#
 if mainout:
