@@ -77,10 +77,10 @@ would be given from the beggining.
 
 As example, one command line with all options will be:
 
->In Windows Terminal:
+In Windows Terminal:
 >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
 
->In Linux Terminal:
+In Linux Terminal:
 >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
 
 - - - - - - -
