@@ -44,8 +44,8 @@ v2.0, but other versions will be compatible.
 USAGE:
 - - - -
 The script multifastats.py has to be in the same directory of your file
-to analyze. If you want to use the program from any location, please
-read the 'Optional' section.
+to analyze. If you want to use the program from any location, please read
+the 'Optional' section.
 
 There are two modes:
 
