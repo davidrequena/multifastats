@@ -9,7 +9,7 @@ each single sequence too).
 
 -------------------------------------------------------------------------------
 
->Version 1.4.7, 24-Oct-2014.
+>Version 1.4.7, 30-Oct-2014.
 Made by David Requena. Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
