@@ -52,26 +52,27 @@ of the file you want to analyze (autocomplete allowed). To use the program in th
 just run the script multifastats.py as follows:
 
 >In Windows:  Just run the script with doble-click!
-    Or from the terminal:   ~$ multifastats.py
+>Or from the terminal:   ~$ multifastats.py
+
 >In Linux:\tOne of the following two ways:
-    ~$ python multifastats.py   or  ~$ ./multifastats.py
+>~$ python multifastats.py    or    ~$ ./multifastats.py
 
 b) 'Command-Line':
 Some options like file name, length cut-off, single analysis and pseudosequence output
 would be given from the beggining.
 
--f (or --file):     Allows to give an input file name (including the
+- -f (or --file):     Allows to give an input file name (including the
             extension). As example: inputfile.fasta
--l (or --Lmin):     Minimum sequence length to be analyzed
--L (or --Lmax):     Maximum sequence length to be analyzed
+- -l (or --Lmin):     Minimum sequence length to be analyzed
+- -L (or --Lmax):     Maximum sequence length to be analyzed
             Add a cutf-off value for the length of the sequences
             to be analyzed: Lmin =< (Sequence Length) =< Lmax.
             You can provide minimum, maximum or both cut-off
             values. Only positive numbers allowed!
--o (or --outsbg):   Produces an output with the subgroup of sequences
+- -o (or --outsbg):   Produces an output with the subgroup of sequences
             analyzed
--s (or --single):   Add the single sequence analysis (see INFO)
--p (or --pseudo):   Produces the 'pseudo-sequence' output. The
+- -s (or --single):   Add the single sequence analysis (see INFO)
+- -p (or --pseudo):   Produces the 'pseudo-sequence' output. The
             sequences will be concatenated with the letter 'N'
             (for DNA/RNA) or 'X' (for Proteins) repeated the number
             of times indicated after -p
@@ -79,9 +80,10 @@ would be given from the beggining.
 As example, one command line with all options will be:
 
 >In Windows Terminal:
-~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+
 >In Linux Terminal:
-~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
 
 - - - - - - -
 INFO OPTIONS:
