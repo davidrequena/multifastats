@@ -2,10 +2,10 @@ multifastats
 ============
 
 Multifastats: Multi-Fasta Sequence Stats. Free program based in a python
-script, to calculate basic statistics and outputs and allows to apply some
-filters (N50, %GC, molecular weight, pseudosequences and subgroups for
-length and type filters) for a set of 'fasta' sequences (and optionally for
-each single sequence too).
+script, to calculate basic statistics and outputs and allows to apply
+some filters (N50, %GC, molecular weight, pseudosequences and subgroups
+for length and type filters) for a set of 'fasta' sequences (and
+optionally for each single sequence too).
 
 -------------------------------------------------------------------------
 
@@ -65,10 +65,10 @@ b) 'Command-Line':
 Some options like file name, length cut-off, single analysis and 
 pseudosequence options would be given from the beggining.
 
--f (or --file):     Allows to give an input file name (including the
+-f (or --file): Allows to give an input file name (including the
             extension). As example: inputfile.fasta
--l (or --Lmin):     Minimum sequence length to be analyzed
--L (or --Lmax):     Maximum sequence length to be analyzed
+-l (or --Lmin): Minimum sequence length to be analyzed
+-L (or --Lmax): Maximum sequence length to be analyzed
             Add a cutf-off value for the length of the sequences
             to be analyzed: Lmin =< (Sequence Length) =< Lmax.
             You can provide minimum, maximum or both cut-off
@@ -95,8 +95,8 @@ You will give some arguments to get some program info:
 * -h (or --help)		:	General description and usage of the program.
 * -v (or --version)	:	Version and revision of the program.
 * -i (or --info)		:	Information about the parameters calculated.
-* -n (or --notes)	:	Notes about the current and previous versions of
-					the program.
+* -n (or --notes)	:	Notes about the current and previous versions
+					of the program.
 
 - - - - -
 Optional:
@@ -114,9 +114,9 @@ Then, you will call the program from any location in your user. So,
 instead to write '>>~$ python multifastats.py' you just need to write
 '>>~$ multifastats.py'
 
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------
 *** PARAMETERS INFORMATION ***
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------
 
 For a set of sequences, the parameters calculated are:
 
@@ -150,8 +150,8 @@ This contains stats of each single sequence:
 - %GC: Percentage of G, C or S (G or C) nucleotides (no case sensitive)
   in the sequence.
 - Mol Weight: Molecular weight of the sequence, calculated according the
-  molecular_weight() function from Biopython SeqUtils (does not works with
-  ambiguous residues). http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
+  molecular_weight() function from Biopython SeqUtils (does not works
+  with ambiguous residues). http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
 
 -------------------------------------------------------------------------
 *** VERSION NOTES ***
@@ -159,8 +159,8 @@ This contains stats of each single sequence:
 History:
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off, a fasta
-  output of the selected subset of sequences, the pseudomolecule output and
-  a reduce in the warnings for sequences not considered.
+  output of the selected subset of sequences, the pseudomolecule output
+  and a reduce in the warnings for sequences not considered.
 - Version 1.4.2 (D.R. 24-Oct-2014):
   Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
@@ -179,7 +179,8 @@ History:
   format.
 - Version 1.0 (D.R. 20-Oct-2014):
   The basic version, just calculate the N50, %GC, number of sequences and
-  total residues in the multifasta by a given file name inside the script.
+  total residues in the multifasta by a given file name inside the
+  script.
 
 ***For the Version 1.5, I'm implementing the following new options:
 - Filter by sequence type.
@@ -190,13 +191,13 @@ History:
 
 Requests for new options are welcome!
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 REALLY IMPORTANT TO DECLARE:
 - - - - - - - - - - - - - - -
 Some parts of the code was adapted from multiple sources freely available
 developed by the scientific community, like SQUID's seqstat, Peter
-'maubp' N50 (seqanswers.com) and biopython packages. This code is free to use, modify
-and distribute under the MIT License.
+'maubp' N50 (seqanswers.com) and biopython packages. This code is free to
+use, modify and distribute under the MIT License.
 
 ***Thanks to my lab friends by the exhaustively testing as intended bad users.
 
