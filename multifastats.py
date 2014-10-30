@@ -167,7 +167,7 @@ Multifastats: Multi-Fasta Sequence Stats
 For sets of sequences, the parameters calculated are:
 
 - Type of sequences: Indicates the type(s) of sequences in the file (DNA,
-  RNA or protein)
+  RNA or protein).
 - Num of Sequences: Count the total number of sequences in the multifasta file.
 - Min, Max and Average length: Gives the minimum, maximum and average sequence
   length in the multifasta file, respectively.
