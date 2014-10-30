@@ -52,11 +52,13 @@ of the file you want to analyze (autocomplete allowed). To use the program in th
 just run the script multifastats.py as follows:
 
 >In Windows:
->>Just run the script with doble-click!
->>Or from the terminal:   ~$ multifastats.py
+
+>Just run the script with doble-click! Or from the terminal:
+>>~$ multifastats.py
 
 >In Linux:
->>One of the following two ways:
+
+>One of the following two ways:
 >>~$ python multifastats.py
 
 >or
