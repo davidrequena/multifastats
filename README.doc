@@ -65,8 +65,6 @@ b) 'Command-Line':
 Some options like file name, length cut-off, single analysis and 
 pseudosequence options would be given from the beggining.
 
->>~$ python multifastats.py -f (inputfile)
-
 -f (or --file):     Allows to give an input file name (including the
             extension). As example: inputfile.fasta
 -l (or --Lmin):     Minimum sequence length to be analyzed
