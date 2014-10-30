@@ -633,7 +633,7 @@ if testps or testsga or testsbg:
 if testsbg:
     if sbginp: #If we are in the user-interactive mode, asking for a valid option for the subgroup output to continue.
         while testsbg:
-            sbgopt=raw_input("Do you want to generate a multifasta file with the sequences analyzed?\nWrite 'Y' to make it or 'N' to continue): ")
+            sbgopt=raw_input("\nDo you want to generate a multifasta file with the sequences analyzed?\nWrite 'Y' to make it or 'N' to continue): ")
             if sbgopt.lower() in yesopt:
                 subgroupseq(filename,int(minlen),int(maxlen),currTime,wrng)
                 print '\nDONE: A .fasta file with the sequences analyzed has been wrote in\nyour current working directory:'
@@ -654,7 +654,7 @@ if testsbg:
 if testps:
     if psinp: #If we are in the user-interactive mode, asking for a valid option for the pseudosequence ooutput to continue.
         while testps:
-            psopt=raw_input("Do you want to generate a pseudosequence?\nWrite 'Y' to build it or 'N' to continue): ")
+            psopt=raw_input("\nDo you want to generate a pseudosequence?\nWrite 'Y' to build it or 'N' to continue): ")
             if psopt.lower() in yesopt:
                 pschk=1
                 while pschk:
@@ -685,7 +685,7 @@ if testps:
 if testsga:
     if sgainp: #If we are in the user-interactive mode, asking for a valid option to make the single analysis to continue.
         while testsga:
-            sgaopt=raw_input("Do you want statistics for each single sequence?\nWrite 'Y' to calculate or 'N' to finish): ")
+            sgaopt=raw_input("\nDo you want statistics for each single sequence?\nWrite 'Y' to calculate or 'N' to finish): ")
             if sgaopt.lower() in yesopt:
                 doanlys=singanlys(filename,int(minlen),int(maxlen),currTime,wrng)
                 print '\nDONE: A .csv file has been wrote with the single sequence\nstats in your current working directory:'
