@@ -57,7 +57,9 @@ just run the script multifastats.py as follows:
 
 >In Linux:
 >>One of the following two ways:
->>~$ python multifastats.py   or   ~$ ./multifastats.py
+>>~$ python multifastats.py
+>or
+>>~$ ./multifastats.py
 
 b) 'Command-Line':
 Some options like file name, length cut-off, single analysis and pseudosequence output
