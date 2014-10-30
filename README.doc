@@ -4,13 +4,11 @@ multifastats
 Multifastats: Multi-Fasta Sequence Stats. Free program based in a python
 script, to calculate basic statistics and filters (N50, %GC, length,
 types, molecular weight) for a set of 'fasta' sequences (and optionally
-for each single sequence too).
-
-This will run in Windows, Linux and Mac OS.
+for each single sequence too). For Windows, Linux and Mac OS.
 
 -------------------------------------------------------------------------
 
->Version 1.4.2, 24-Oct-2014.
+>Version 1.5, 30-Oct-2014.
 Made by David Requena.
 Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
@@ -29,7 +27,7 @@ sequences, and optionally for each single sequence, too.
 REQUIREMENTS:
 - - - - - - -
 To run this program, python 2.7 and the following packages are required:
-* python 2.7 x86
+* python 2.7 (x86 - 32 bits)
 		https://www.python.org/download/releases/2.7.8/
 * biopython
 		http://biopython.org/wiki/Download
@@ -57,7 +55,10 @@ ask you the name of the file you want to analyze (autocomplete allowed in
 Windows, Linux and MAC OS). To use the program in this mode, just run the
 script with doble-click or call it from command-line as follows:
 
->>~$ python multifastats.py
+  -In Windows:\tJust run the script with doble-click!
+  \t\tOr from the terminal:    >>~$ multifastats.py
+  -In Linux:\tOne of the following two ways:
+  \t\t>>~$ python multifastats.py   or   >>~$ ./multifastats.py
 
 b) 'Command-Line':
 File name, length cut-off and single analysis options have to be given
