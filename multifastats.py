@@ -3,9 +3,11 @@
 import os, sys, platform
 #=========================================================================#
 #To update in every release:
-vers='Version 1.4.2, 24-Oct-2014.'
-versnote='''- Version 1.4.2 (D.R. 24-Oct-2014):
-  Adding autocomplete using tab in Windows and MAC OS.'''
+vers='Version 1.4.7, 30-Oct-2014.'
+versnote='''- Version 1.4.7 (D.R. 30-Oct-2014):
+  Functions improved. New options: upper length cut-off, a fasta
+  output of the selected subset of sequences, the pseudomolecule output and
+  a reduce in the warnings for sequences not considered.'''
 #=========================================================================#
 dochpini='''
 ===============================================================================
@@ -44,7 +46,7 @@ To use in the program in this mode, run the script multifastats.py as follows:
   -In Linux:\tOne of the following two ways:
   \t\t>>~$ python multifastats.py   or   >>~$ ./multifastats.py
 
-2) 'Command-Line': Some options, like file name, length cut-off, single
+2) 'Command-Line': Some options like file name, length cut-off, single
 analysis and pseudosequence options would be given from the beggining.
 
 -f (or --file): \tAllows to give an input file name (including the
@@ -55,10 +57,12 @@ analysis and pseudosequence options would be given from the beggining.
 \t\t\tto be analyzed: Lmin =< (Sequence Length) =< Lmax.
 \t\t\tYou can provide minimum, maximum or both cut-off
 \t\t\tvalues. Only positive numbers allowed!
+-o (or --outsbg):\tProduces an output with the subgroup of sequences
+\t\t\tanalyzed
 -s (or --single):\tAdd the single sequence analysis
--p (or --pseudo):\tAdd the 'pseudo-sequence' output. The sequences will be
-\t\t\tconcatenated with the letter 'N' (for DNA/RNA) or 'X'
-\t\t\t(for Proteins) repeated the number of times
+-p (or --pseudo):\tProduces the 'pseudo-sequence' output. The sequences will
+\t\t\tbe concatenated with the letter 'N' (for DNA/RNA)
+\t\t\tor 'X' (for Proteins) repeated the number of times
 \t\t\tindicated after -p
 
 As example, one command line with all options will be:
@@ -71,9 +75,9 @@ INFO OPTIONS:
 - - - - - - -
 You will give some arguments to get some program info:
 -h (or --help)\t :\tGeneral description and usage of the program.
--v (or --version):\tVersion and revision of the program.
--i (or --info)\t :\tInformation about the parameters calculated.
--n (or --notes)\t :\tNotes about the current and previous versions program.
+-v (or --version):\tVersion (and revision) of the program.
+-i (or --info)\t :\tInformation about the parameters calculated and outputs.
+-n (or --notes)\t :\tNotes about the current and previous versions of the program.
 
 Optional:
 - - - - -
@@ -81,7 +85,7 @@ Maybe you will have more fun if you copy the script to '/usr/local/bin'
 and give some permisions (chmod +xr). This will allow you to call it and use
 directly from the terminal in any directory of your computer and allow to
 autocomplete the name of any file (not only python scripts).
-You will do that with the following commands in the linux terminal:
+You will do that with the following commands in the unix terminal:
 >>~$ sudo chmod +xr multifastats.py
 >>~$ sudo mv multifastats.py /usr/local/bin
 Then, you will call the program from any location in your user, directly from
@@ -110,7 +114,9 @@ Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
 '''
-docntend='''- Version 1.4.1 (D.R. 23-Oct-2014):
+docntend='''- Version 1.4.2 (D.R. 24-Oct-2014):
+  Adding autocomplete using tab in Windows and MAC OS.
+- Version 1.4.1 (D.R. 23-Oct-2014):
   Including the revisions after testing of many users.
 - Version 1.4 (D.R. 23-Oct-2014):
   Adding length cut-off, indicate type(s) of sequences and Windows
@@ -160,6 +166,8 @@ Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 For sets of sequences, the parameters calculated are:
 
+- Type of sequences: Indicates the type(s) of sequences in the file (DNA,
+  RNA or protein)
 - Num of Sequences: Count the total number of sequences in the multifasta file.
 - Min, Max and Average length: Gives the minimum, maximum and average sequence
   length in the multifasta file, respectively.
@@ -169,12 +177,16 @@ For sets of sequences, the parameters calculated are:
   all the sequences in the multifasta file.
 - Total %GC in file: This parameter calculates the percentage of G, C or S (G
   or C) nucleotides (no case sensitive) in the complete set of sequences.
-----------------------------------------
-For each sequence, the parameters calculated are:
 
-A .csv file is write in the current working directory:
-sganl_(FILENAME)_(TIME).csv
-This contains each single sequence stats:
+For the output of the subgroup of sequences, a .csv file is write in the
+current working directory: subgroup_(FILENAME)_(TIME).csv
+
+For the pseudosequence output, a .csv file is write in the current
+working directory: pseudoseq_(FILENAME)_(TIME).csv
+
+For the single sequence analysis, a .csv file is write in the current working
+directory: sganl_(FILENAME)_(TIME).csv
+This contains stats of each single sequence:
 
 - N: Number of the sequence in the set of sequences.
 - ID: ID (header) of the sequence.
@@ -619,7 +631,7 @@ if testps or testsga or testsbg:
     noopt=['n', 'no']
 #=========================================================================#
 if testsbg:
-    if sbginp: #If we are in the user-interactive mode, asking for a valid option for the subgroup ooutput to continue.
+    if sbginp: #If we are in the user-interactive mode, asking for a valid option for the subgroup output to continue.
         while testsbg:
             sbgopt=raw_input("Do you want to generate a multifasta file with the sequences analyzed?\nWrite 'Y' to make it or 'N' to continue): ")
             if sbgopt.lower() in yesopt:
