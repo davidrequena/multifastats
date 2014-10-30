@@ -51,12 +51,12 @@ To use in this mode, run the script with NO arguments. The program will ask you 
 of the file you want to analyze (autocomplete allowed). To use the program in this mode,
 just run the script multifastats.py as follows:
 
->In Windows:
+In Windows:
 
 >Just run the script with doble-click! Or from the terminal:
 >>~$ multifastats.py
 
->In Linux:
+In Linux:
 
 >One of the following two ways:
 >>~$ python multifastats.py
