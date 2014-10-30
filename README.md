@@ -155,7 +155,7 @@ This contains stats of each single sequence:
 History:
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off, a fasta output of the selected
-  subset of sequences, the pseudomolecule output and a reduce in the warnings for
+  subset of sequences, the pseudomolecule output and a reduce in the warnings for the
   sequences not considered.
 - Version 1.4.2 (D.R. 24-Oct-2014):
   Adding autocomplete using tab in Windows and MAC OS.
