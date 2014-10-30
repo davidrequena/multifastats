@@ -58,6 +58,7 @@ just run the script multifastats.py as follows:
 >In Linux:
 >>One of the following two ways:
 >>~$ python multifastats.py
+
 >or
 >>~$ ./multifastats.py
 
