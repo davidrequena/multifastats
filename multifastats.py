@@ -60,8 +60,8 @@ analysis and pseudosequence options would be given from the beggining.
 -o (or --outsbg):\tProduces an output with the subgroup of sequences
 \t\t\tanalyzed
 -s (or --single):\tAdd the single sequence analysis
--p (or --pseudo):\tProduces the 'pseudo-sequence' output. The sequences will
-\t\t\tbe concatenated with the letter 'N' (for DNA/RNA)
+-p (or --pseudo):\tProduces the 'pseudo-sequence' output. The sequences
+\t\t\twill be concatenated with the letter 'N' (for DNA/RNA)
 \t\t\tor 'X' (for Proteins) repeated the number of times
 \t\t\tindicated after -p
 
@@ -76,7 +76,7 @@ INFO OPTIONS:
 You will give some arguments to get some program info:
 -h (or --help)\t :\tGeneral description and usage of the program.
 -v (or --version):\tVersion (and revision) of the program.
--i (or --info)\t :\tInformation about the parameters calculated and outputs.
+-i (or --info)\t :\tInformation about the parameters and outputs.
 -n (or --notes)\t :\tNotes about the current and previous versions of the program.
 
 Optional:
@@ -86,8 +86,8 @@ and give some permisions (chmod +xr). This will allow you to call it and use
 directly from the terminal in any directory of your computer and allow to
 autocomplete the name of any file (not only python scripts).
 You will do that with the following commands in the unix terminal:
->>~$ sudo chmod +xr multifastats.py
->>~$ sudo mv multifastats.py /usr/local/bin
+  >>~$ sudo chmod +xr multifastats.py
+  >>~$ sudo mv multifastats.py /usr/local/bin
 Then, you will call the program from any location in your user, directly from
 the command line. So, instead to write '>>~$ python multifastats.py' you just
 need to write '>>~$ multifastats.py'
@@ -382,7 +382,7 @@ if lctinp:
         pass
     elif ctlnopt==2:
         while clinp==0:
-            tochklc=raw_input("Please, give a positive value for the minimum sequence length to analyze\n(or 0 to not set a minimum value): ")
+            tochklc=raw_input("Please, give a positive value for the MINIMUM sequence length to analyze\n(or 0 to not set a minimum value): ")
             try:
                 if (float(tochklc)>=0):
                     clinp=1 #Correct value of l given, continue.
@@ -395,7 +395,7 @@ if lctinp:
                 pass
     elif ctlnopt==3:
         while clinp==0:
-            tochklc=raw_input("Please, give a positive value for the maximum sequence length to analyze\n(or 0 to not set a maximum value): ")
+            tochklc=raw_input("Please, give a positive value for the MAXIMUM sequence length to analyze\n(or 0 to not set a maximum value): ")
             try:
                 if (float(tochklc)>=0):
                     clinp=1 #Correct value of L given, continue.
@@ -408,7 +408,7 @@ if lctinp:
                 pass
     elif ctlnopt==4:
         while clinp==0:
-            tochklc=raw_input("Please, give a positive value for the minimum sequence length to analyze\n(or 0 to not set a minimum value): ")
+            tochklc=raw_input("Please, give a positive value for the MINIMUM sequence length to analyze\n(or 0 to not set a minimum value): ")
             try:
                 if (float(tochklc)>=0):
                     clinp=1 #Correct value of l given, continue.
@@ -421,7 +421,7 @@ if lctinp:
                 pass
         clinp=0 #Give 0 to clinp to evaluate a new input (now for Lmax).
         while clinp==0:
-            tochklc=raw_input("Please, give a positive value for the maximum sequence length to analyze\n(or 0 to not set a maximum value): ")
+            tochklc=raw_input("Please, give a positive value for the MAXIMUM sequence length to analyze\n(or 0 to not set a maximum value): ")
             try:
                 if (float(tochklc)>=0):
                     clinp=1 #Correct value of L given, continue.
@@ -581,7 +581,7 @@ if len(contgslen)>0:
     totGC=numGC*100.0/totlen
     wrng=0 #Turn off the warnings for ignored sequences, these have to be shown at this point.
 else:
-    print "There is no sequence to analyze. Please, check your file and\nthe value of 'l' (length) given."
+    print "There is no sequence to analyze. Please, check your file and\nthe value of length given."
     exitval()
 #=========================================================================#
 if mainout:
