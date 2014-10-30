@@ -375,7 +375,7 @@ if lctinp:
     clinp=0 #This variable allows to verify if a valid value for L is given.
     print '- '*29+'-'
     print "Do you want to analyze all the sequences? Or just a subset\nof them between a minimum and a maximum length?"
-    ctlnopt=int(raw_input("Bad input given. Please, choose one option: (1, 2, 3 or 4)\n1) Analyze all the sequences\n2) A subset above a minimum sequence length (Lmin)\n3) A subset below a maximum sequence length (Lmax)\n4) A subset between a Lmin and Lmax values.\n\nEnter your option:"))
+    ctlnopt=int(raw_input("Please, choose one option: (1, 2, 3 or 4)\n\n1) Analyze all the sequences\n2) A subset above a minimum sequence length (Lmin)\n3) A subset below a maximum sequence length (Lmax)\n4) A subset between a Lmin and Lmax values.\n\nEnter your option:"))
     while (ctlnopt not in (1, 2, 3, 4)):
         ctlnopt=int(raw_input("Bad input given. Please, choose one option: (1, 2, 3 or 4)\n1) Analyze all the sequences\n2) A subset above a minimum sequence length (Lmin)\n3) A subset below a maximum sequence length (Lmax)\n4) A subset between a Lmin and Lmax values.\n\nEnter your option:"))
     if ctlnopt==1:
