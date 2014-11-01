@@ -218,6 +218,7 @@ sgainp=0 #This variable is the state of the manual input requirement for the sin
 psinp=0 #This variable is the state of the manual input requirement for the pseudopsequence (1=YES/0=NO).
 lctinp=0 #This variable is the state of the manual input requirement for the length cut-off (1=YES/0=NO).
 nrep=0 #This variable is the number of times to repeat the ambiguous residue in the pseudosequence.
+kmrlen=0
 minlen=0 #This variable is the minimum length to analyze (0 means no cut-off).
 maxlen=0 #This variable is the maximum length to analyze (0 means no cut-off).
 #=========================================================================#
@@ -310,7 +311,7 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             indkm=args.index('--kmer')
         try:
-            nrep=int(sys.argv[indps+1])
+            kmrlen=int(sys.argv[indps+1])
         except:
             print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
             exitval()
