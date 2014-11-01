@@ -304,6 +304,16 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
             exitval()
+    if (('-k' or '--kmer') in args):
+        try:
+            indkm=sys.argv.index('-k')
+        except:
+            indkm=args.index('--kmer')
+        try:
+            nrep=int(sys.argv[indps+1])
+        except:
+            print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
+            exitval()
     testsga=0 if (('-s' or '--single') not in args) else 1 #This means that we will do the single analysis if -s option if given.
     testsbg=0 if (('-o' or '--outsbg') not in args) else 1 #This means that we will do the single analysis if -s option if given.
     testps=0 if (('-p' or '--pseudo') not in args) else 1 #This means that we will make the pseudosequence output.
@@ -520,6 +530,16 @@ def subgroupseq(filenm,lmin,lmax,ctime,warn):
     sbgrp_handle = open("subgroup_"+filenm.replace(".","")+ctime+".fasta", "w") #Creating a new file to write the sequences.
     multifst = open(filenm,"rU")
     for eachseq in SeqIO.parse(multifst, "fasta"):
+        evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
+        if evalen[0]:
+            SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter is writen in the file.
+    multifst.close()
+    sbgrp_handle.close()
+#=========================================================================#
+def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
+    kmer_handle = open(klen+"mer_"+filenm.replace(".","")+ctime+".fasta", "w") #Creating a new file to write the sequences.
+    seqsfile = open(filenm,"rU")
+    for eachseq in SeqIO.parse(seqsfile, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
         if evalen[0]:
             SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter is writen in the file.
