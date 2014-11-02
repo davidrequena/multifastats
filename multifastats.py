@@ -185,7 +185,7 @@ For the pseudosequence output, a .csv file is write in the current
 working directory: pseudoseq_(FILENAME)_(TIME).csv
 
 For the single sequence analysis, a .csv file is write in the current working
-directory: sganl_(FILENAME)_(TIME).csv
+directory: single_(FILENAME)_(TIME).csv
 This contains stats of each single sequence:
 
 - N: Number of the sequence in the set of sequences.
@@ -582,7 +582,9 @@ def singanlys(filenm,lmin,lmax,ctime,warn):
         outpbyseqcsv.write(newlinecsv)
     multifs.close()
     outpbyseqcsv.close()
-    return singlefilenm
+    print 'A .csv file has been wrote with the single sequence stats in\nyour current working directory:'
+    print '('+singlefilenm+')'
+    print '\nThank you!'
 #=========================================================================#
 sqfs = open(filename,"rU")
 numGC=0
@@ -712,10 +714,8 @@ if testsga:
         while testsga:
             sgaopt=raw_input("\nDo you want statistics for each single sequence?\nWrite 'Y' to calculate or 'N' to finish): ")
             if sgaopt.lower() in yesopt:
-                doanlys=singanlys(filename,int(minlen),int(maxlen),currTime,wrng)
-                print '\nDONE: A .csv file has been wrote with the single sequence\nstats in your current working directory:'
-                print '(sganl_'+filename.replace(".","")+'_'+currTime+'.csv)'
-                print '\nThank you!'
+                print '\nDONE:'
+                singanlys(filename,int(minlen),int(maxlen),currTime,wrng)
                 print '- '*29+'-'
                 testsga=0
                 exitval()
@@ -728,10 +728,7 @@ if testsga:
                 print "Bad option, try again."
                 pass
     else: #If we are in the command-line mode and the parameter for single analysis is given, do the analysis.
-        doanlys=singanlys(filename,int(minlen),int(maxlen),currTime,wrng)
-        print 'A .csv file has been wrote with the single sequence stats in\nyour current working directory:'
-        print '(sganl_'+filename.replace(".","")+'_'+currTime+'.csv)'
-        print '\nThank you!'
+        singanlys(filename,int(minlen),int(maxlen),currTime,wrng)
         print '- '*34+'-'
         timeout(1)
         exit()
