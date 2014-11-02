@@ -506,7 +506,8 @@ def N50(lenlist): # N50 calculation, based on the Broad Institute definition: ht
 #=========================================================================#
 def pseudoseq(filenm,numrep,lmin,lmax,ctime,warn):
     from Bio.SeqRecord import SeqRecord
-    pseudo_handle = open("pseudoseq_"+filenm.replace(".","")+ctime+".fasta", "w")
+    psfilenm="pseudoseq_"+filenm.replace(".","")+ctime+".fasta"
+    pseudo_handle = open(psfilenm, "w")
     manyseqs = open(filenm,"rU")
     if lmax==0 and lmin>0: #Setting a specific description for each case of length restriction.
         dscrp="FILE: "+filenm+" Sequences from "+str(lmin)+" residues length."
@@ -526,9 +527,12 @@ def pseudoseq(filenm,numrep,lmin,lmax,ctime,warn):
     newseq.seq=newseq.seq[:-numrep] #This step is to cut the last Ns or Xs added by the for-loop.
     SeqIO.write(newseq, pseudo_handle, "fasta")
     pseudo_handle.close()
+    print 'A .fasta file with the pseudosequence has been wrote in\nyour current working directory:'
+    print '('+psfilenm+')'
 #=========================================================================#
 def subgroupseq(filenm,lmin,lmax,ctime,warn):
-    sbgrp_handle = open("subgroup_"+filenm.replace(".","")+ctime+".fasta", "w") #Creating a new file to write the sequences.
+    sbgrpfilenm="subgroup_"+filenm.replace(".","")+ctime+".fasta"
+    sbgrp_handle = open(sbgrpfilenm, "w") #Creating a new file to write the sequences.
     multifst = open(filenm,"rU")
     for eachseq in SeqIO.parse(multifst, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
@@ -536,20 +540,25 @@ def subgroupseq(filenm,lmin,lmax,ctime,warn):
             SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter is writen in the file.
     multifst.close()
     sbgrp_handle.close()
+    print 'A .fasta file with the sequences analyzed has been wrote in\nyour current working directory:'
+    print '('+sbgrpfilenm+')'
 #=========================================================================#
 def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
-    kmer_handle = open(klen+"mer_"+filenm.replace(".","")+ctime+".fasta", "w") #Creating a new file to write the sequences.
+    kmerfilenm=klen+"mer_"+filenm.replace(".","")+ctime+".fasta"
+    kmer_handle = open(kmerfilenm, "w") #Creating a new file to write the sequences.
     seqsfile = open(filenm,"rU")
     for eachseq in SeqIO.parse(seqsfile, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
         if evalen[0]:
             SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter is writen in the file.
-    multifst.close()
-    sbgrp_handle.close()
+    seqsfile.close()
+    kmer_handle.close()
+    return kmerfilenm
 #=========================================================================#
 def singanlys(filenm,lmin,lmax,ctime,warn):
     from Bio.SeqUtils import GC, molecular_weight
-    outpbyseqcsv = open("sganl_"+filenm.replace(".","")+"_"+ctime+".csv","w") #Creating the file to write the output
+    singlefilenm="single_"+filenm.replace(".","")+"_"+ctime+".csv"
+    outpbyseqcsv = open(singlefilenm,"w") #Creating the file to write the output
     outpbyseqcsv.write('N,ID,Type,Length,%GC,Mol Weight\n') #Headers line.
     idsnocom=[] #To store the ID of each seq without commas.
     molwght=[] #To store the molecular weight of each sequence.
@@ -571,8 +580,9 @@ def singanlys(filenm,lmin,lmax,ctime,warn):
         newlinecsv=str(count)+','+str(idsnocom[i])+','+typesofseqs[i]+','+str(contgslen[i])+','+"{0:.2f}".format(gcs[i])+','+"{0:.2f}".format(molwght[i])+'\n' #If we want to use the function independently, we need to change this line to: #newlinecsv=str(count)+','+str(idsnocom[i])+','+str(listcntgslen[i])+','+"{0:.2f}".format(listgcs[i])+','+"{0:.2f}".format(molwght[i])+'\n'
         #print newlinecsv #I left this line because maybe someone wants to see the output in the python interpreter.
         outpbyseqcsv.write(newlinecsv)
-        multifs.close()
+    multifs.close()
     outpbyseqcsv.close()
+    return singlefilenm
 #=========================================================================#
 sqfs = open(filename,"rU")
 numGC=0
@@ -656,9 +666,8 @@ if testsbg:
         while testsbg:
             sbgopt=raw_input("\nDo you want to generate a multifasta file with the sequences analyzed?\nWrite 'Y' to make it or 'N' to continue): ")
             if sbgopt.lower() in yesopt:
+                print '\nDONE:'
                 subgroupseq(filename,int(minlen),int(maxlen),currTime,wrng)
-                print '\nDONE: A .fasta file with the sequences analyzed has been wrote in\nyour current working directory:'
-                print '(subgroup_'+filename.replace(".","")+currTime+'.fasta)'
                 print '- '*29+'-'
                 testsbg=0
             elif sbgopt.lower() in noopt:
@@ -667,8 +676,6 @@ if testsbg:
                 print "Bad option, try again."
     else: #If we are in the command-line mode and the parameter for subgroup option is given, do the analysis.
         subgroupseq(filename,int(minlen),int(maxlen),currTime,wrng)
-        print 'A .fasta file with the sequences analyzed has been wrote in\nyour current working directory:'
-        print '(subgroup_'+filename.replace(".","")+currTime+'.fasta)'
         print '- '*34+'-'
         timeout(1)
 #=========================================================================#
@@ -682,9 +689,8 @@ if testps:
                     nrep=raw_input("Please, give the NUMBER of repeats of the ambiguous\nresidue to concatenate the sequences: ")
                     try:
                         if int(nrep)>=0:
+                            print '\nDONE:'
                             pseudoseq(filename,int(nrep),int(minlen),int(maxlen),currTime,wrng) #Correct number of repetitions, continue.
-                            print '\nDONE: A .fasta file with the pseudosequence has been wrote in\nyour current working directory:'
-                            print '(pseudoseq_'+filename.replace(".","")+currTime+'.fasta)'
                             print '- '*29+'-'
                             pschk=0
                             testps=0
@@ -698,8 +704,6 @@ if testps:
                 print "Bad option, try again."
     else: #If we are in the command-line mode and the parameter for pseudosequence option is given, do the analysis.
         pseudoseq(filename,int(nrep),int(minlen),int(maxlen),currTime,wrng)
-        print 'A .fasta file with the pseudosequence has been wrote in\nyour current working directory:'
-        print '(pseudoseq_'+filename.replace(".","")+currTime+'.fasta)'
         print '- '*34+'-'
         timeout(1)
 #=========================================================================#
