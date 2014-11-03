@@ -9,7 +9,7 @@ each single sequence too).
 
 -------------------------------------------------------------------------------
 
->Version 1.4.7, 30-Oct-2014.
+>Version 1.4.8, 03-Nov-2014.
 Made by David Requena. Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
 This code will be updated and freely available in GitHub:
@@ -128,15 +128,15 @@ For sets of sequences, the parameters calculated are:
 - Total %GC in file: This parameter calculates the percentage of G, C or S (G
   or C) nucleotides (no case sensitive) in the complete set of sequences.
 
-For the output of the subgroup of sequences, a .csv file is write in the
-current working directory: subgroup_(FILENAME)_(TIME).csv
+According the output required, some files are written in the current working
+directory:
 
-For the pseudosequence output, a .csv file is write in the current
-working directory: pseudoseq_(FILENAME)_(TIME).csv
+- K-mers: 'k'mer_(FILENAME)_(TIME).csv
+- Subgroup: subgroup_(FILENAME)_(TIME).csv
+- Pseudosequence: pseudoseq_(FILENAME)_(TIME).csv
+- Single analysis: single_(FILENAME)_(TIME).csv
 
-For the single sequence analysis, a .csv file is write in the current
-working directory: sganl_(FILENAME)_(TIME).csv
-This contains stats of each single sequence:
+This last file contains the following stats of each single sequence:
 
 - N: Number of the sequence in the set of sequences.
 - ID: ID (header) of the sequence.
@@ -153,6 +153,8 @@ This contains stats of each single sequence:
 *** VERSION NOTES ***
 -------------------------------------------------------------------------------
 History:
+- Version 1.4.8 (D.R. 03-Nov-2014):
+  Functions and messages improved. New option: cut sequences in k-mers.
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off, a fasta output of the selected
   subset of sequences, the pseudomolecule output and a reduce in the warnings for the
