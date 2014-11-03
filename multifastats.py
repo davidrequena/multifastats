@@ -291,6 +291,7 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             minlen=float(sys.argv[indlmin+1])
             if minlen<0:
                 print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
+                exitval()
         except:
             print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
             exitval()
