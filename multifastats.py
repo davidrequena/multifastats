@@ -314,7 +314,7 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             indkm=args.index('--kmer')
         try:
-            kmrlen=int(sys.argv[indps+1])
+            kmrlen=int(sys.argv[indkm+1])
         except:
             print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
             exitval()
