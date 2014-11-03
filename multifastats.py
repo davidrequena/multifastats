@@ -312,6 +312,8 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
             exitval()
+    else:
+        testps=0
     if (('-k' or '--kmer') in args):
         try:
             indkm=sys.argv.index('-k')
@@ -322,9 +324,10 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
             exitval()
+    else:
+        testkmr=0
     testsga=0 if (('-s' or '--single') not in args) else 1 #This means that we will do the single analysis if -s option is given.
     testsbg=0 if (('-o' or '--outsbg') not in args) else 1 #This means that we will produce the output of the subgroup of sequences analyzed if -o option is given.
-    testps=0 if (('-p' or '--pseudo') not in args) else 1 #This means that we will make the pseudosequence output if -p option is given.
 else: #Any other case
     print "Incorrect way to give the arguments. See 'help' with '-h' or '--help' option."
     exitval()
