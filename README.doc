@@ -144,7 +144,7 @@ working directory:
 - Pseudosequence: pseudoseq_(FILENAME)_(TIME).fasta
 - Single analysis: single_(FILENAME)_(TIME).csv
 
-This contains stats of each single sequence:
+This last file contains the following stats of each single sequence:
 
 - N: Number of the sequence in the set of sequences.
 - ID: ID (header) of the sequence.
