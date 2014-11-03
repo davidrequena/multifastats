@@ -116,6 +116,7 @@ Current version:
 '''
 docntend='''
 History:
+
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off, a fasta
   output of the selected subset of sequences, the pseudomolecule output and
