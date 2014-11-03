@@ -9,7 +9,7 @@ optionally for each single sequence too).
 
 -------------------------------------------------------------------------
 
-Version 1.4.7, 30-Oct-2014.
+Version 1.4.8, 03-Nov-2014.
 Made by David Requena.
 Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
@@ -73,19 +73,21 @@ pseudosequence options would be given from the beggining.
             to be analyzed: Lmin =< (Sequence Length) =< Lmax.
             You can provide minimum, maximum or both cut-off
             values. Only positive numbers allowed!
--o (or --outsbg):   Produces an output with the subgroup of sequences
-            analyzed
--s (or --single):   Add the single sequence analysis (see INFO)
+-k (or --kmers):   PCut the sequences in all the possible fragments
+            of length 'k' (k-mers).
 -p (or --pseudo):   Produces the 'pseudo-sequence' output. The
             sequences will be concatenated with the letter 'N'
             (for DNA/RNA) or 'X' (for Proteins) repeated the number
             of times indicated after -p
+-o (or --outsbg):   Produces an output with the subgroup of sequences
+            analyzed
+-s (or --single):   Add the single sequence analysis (see INFO)
 
 As example, one command line with all options will be:
 In Windows Terminal:
-  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 In Linux Terminal:
-  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 
 - - - - - - -
 INFO OPTIONS:
@@ -157,6 +159,8 @@ This contains stats of each single sequence:
 *** VERSION NOTES ***
 -------------------------------------------------------------------------
 History:
+- Version 1.4.8 (D.R. 03-Nov-2014):
+  Functions and messages improved. New option: cut sequences in k-mers.
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off, a fasta
   output of the selected subset of sequences, the pseudomolecule output
