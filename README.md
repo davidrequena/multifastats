@@ -71,6 +71,7 @@ would be given from the beggining.
 - -f (or --file): Allows to give an input file name (including the extension). As example: inputfile.fasta
 - -l (or --Lmin): Minimum sequence length to be analyzed
 - -L (or --Lmax): Maximum sequence length to be analyzed. Add a cutf-off value for the length of the sequences to be analyzed: Lmin =< (Sequence Length) =< Lmax. You can provide minimum, maximum or both cut-off values. Only positive numbers allowed!
+- -k (or --kmers):  Cut the sequences in all the possible fragments of length 'k' (k-mers).
 - -o (or --outsbg): Produces an output with the subgroup of sequences analyzed
 - -s (or --single):   Add the single sequence analysis (see INFO)
 - -p (or --pseudo):   Produces the 'pseudo-sequence' output. The sequences will be concatenated with the letter 'N' (for DNA/RNA) or 'X' (for Proteins) repeated the number of times indicated after -p
@@ -131,9 +132,9 @@ For sets of sequences, the parameters calculated are:
 According the output required, some files are written in the current working
 directory:
 
-- K-mers: 'k'mer_(FILENAME)_(TIME).csv
-- Subgroup: subgroup_(FILENAME)_(TIME).csv
-- Pseudosequence: pseudoseq_(FILENAME)_(TIME).csv
+- K-mers: 'k'mer_(FILENAME)_(TIME).fasta
+- Subgroup: subgroup_(FILENAME)_(TIME).fasta
+- Pseudosequence: pseudoseq_(FILENAME)_(TIME).fasta
 - Single analysis: single_(FILENAME)_(TIME).csv
 
 This last file contains the following stats of each single sequence:
