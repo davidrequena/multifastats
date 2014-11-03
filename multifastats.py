@@ -3,7 +3,7 @@
 import os, sys, platform
 #=========================================================================#
 #To update in every release:
-vers='Version 1.4.8, 02-Nov-2014.'
+vers='Version 1.4.8, 03-Nov-2014.'
 versnote='''- Version 1.4.8 (D.R. 03-Nov-2014):
 Functions and messages improved. New option: cut sequences in k-mers.'''
 #=========================================================================#
@@ -179,15 +179,15 @@ For sets of sequences, the parameters calculated are:
 - Total %GC in file: This parameter calculates the percentage of G, C or S (G
   or C) nucleotides (no case sensitive) in the complete set of sequences.
 
-For the output of the subgroup of sequences, a .csv file is write in the
-current working directory: subgroup_(FILENAME)_(TIME).csv
+According the output required, some files are written in the current working
+directory:
 
-For the pseudosequence output, a .csv file is write in the current
-working directory: pseudoseq_(FILENAME)_(TIME).csv
+- K-mers: 'k'mer_(FILENAME)_(TIME).fasta
+- Subgroup: subgroup_(FILENAME)_(TIME).fasta
+- Pseudosequence: pseudoseq_(FILENAME)_(TIME).fasta
+- Single analysis: single_(FILENAME)_(TIME).csv
 
-For the single sequence analysis, a .csv file is write in the current working
-directory: single_(FILENAME)_(TIME).csv
-This contains stats of each single sequence:
+This last file contains the following stats of each single sequence:
 
 - N: Number of the sequence in the set of sequences.
 - ID: ID (header) of the sequence.
@@ -508,7 +508,7 @@ def N50(lenlist): #N50 calculation, based on the Broad Institute definition: htt
 #=========================================================================#
 def pseudoseq(filenm,numrep,lmin,lmax,ctime,warn):
     from Bio.SeqRecord import SeqRecord
-    psfilenm="pseudoseq_"+filenm.replace(".","")+ctime+".fasta"
+    psfilenm="pseudoseq_"+filenm.replace(".","")+"_"+ctime+".fasta"
     pseudo_handle = open(psfilenm, "w")
     manyseqs = open(filenm,"rU")
     if lmax==0 and lmin>0: #Setting a specific description for each case of length restriction.
@@ -533,7 +533,7 @@ def pseudoseq(filenm,numrep,lmin,lmax,ctime,warn):
     print '('+psfilenm+')'
 #=========================================================================#
 def subgroupseq(filenm,lmin,lmax,ctime,warn):
-    sbgrpfilenm="subgroup_"+filenm.replace(".","")+ctime+".fasta"
+    sbgrpfilenm="subgroup_"+filenm.replace(".","")+"_"+ctime+".fasta"
     sbgrp_handle = open(sbgrpfilenm, "w") #Creating a new file to write the sequences.
     multifst = open(filenm,"rU")
     for eachseq in SeqIO.parse(multifst, "fasta"):
@@ -546,7 +546,7 @@ def subgroupseq(filenm,lmin,lmax,ctime,warn):
     print '('+sbgrpfilenm+')'
 #=========================================================================#
 def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
-    kmerfilenm=klen+"mer_"+filenm.replace(".","")+ctime+".fasta"
+    kmerfilenm=klen+"mer_"+filenm.replace(".","")+"_"+ctime+".fasta"
     kmer_handle = open(kmerfilenm, "w") #Creating a new file to write the k-mers.
     seqsfile = open(filenm,"rU")
     for eachseq in SeqIO.parse(seqsfile, "fasta"):
