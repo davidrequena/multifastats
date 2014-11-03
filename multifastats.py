@@ -289,6 +289,8 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             indlmin=args.index('--lmin')
         try:
             minlen=float(sys.argv[indlmin+1])
+            if minlen<0:
+                print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
         except:
             print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
             exitval()
@@ -299,6 +301,9 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             indlmax=args.index('--lmax')
         try:
             maxlen=float(sys.argv[indlmax+1])
+            if maxlen<0:
+                print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
+                exitval()
         except:
             print "Incorrect value provided for maximum length. See 'help' with '-h' or '--help' option."
             exitval()
@@ -309,6 +314,9 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             indps=args.index('--pseudo')
         try:
             nrep=int(sys.argv[indps+1])
+            if nrep<0:
+                print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
+                exitval()
         except:
             print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
             exitval()
@@ -321,6 +329,9 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             indkm=args.index('--kmer')
         try:
             kmrlen=int(sys.argv[indkm+1])
+            if kmrlen<=0:
+                print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
+                exitval()
         except:
             print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
             exitval()
@@ -558,7 +569,7 @@ def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
     seqsfile = open(filenm,"rU")
     for eachseq in SeqIO.parse(seqsfile, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
-        if evalen[0] and klen>0:
+        if evalen[0]:
             for i in range(len(eachseq.seq)-klen+1):
                 kmerseq = eachseq.seq[i:i+klen]
                 kmerline = '>'+str(eachseq.id)+'_'+str(i+1)+'\n'+str(kmerseq)+'\n' #If the sequence passes the filter, each k-mer is writen in the file.
