@@ -240,6 +240,7 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     mainout=1
     maininp=1
     lctinp=1
+    kmrinp=1
     psinp=1
     sbginp=1
     sgainp=1
