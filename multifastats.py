@@ -725,7 +725,7 @@ if testkmr:
                 while kmrchk:
                     kmrlen=raw_input("Please, give a NUMBER for the length of the fragments (k-mers): ")
                     try:
-                        if int(kmrlen)>=0:
+                        if int(kmrlen)>0:
                             print '\nDONE:'
                             kmercutter(filename,int(kmrlen),int(minlen),int(maxlen),currTime,wrng) #Correct length of kmers, continue.
                             print '- '*29+'-'
