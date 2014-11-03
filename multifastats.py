@@ -112,9 +112,11 @@ docntini='''
 ===============================================================================
 Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
-History:
+Current version:
 '''
-docntend='''- Version 1.4.7 (D.R. 30-Oct-2014):
+docntend='''
+History:
+- Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off, a fasta
   output of the selected subset of sequences, the pseudomolecule output and
   a reduce in the warnings for the sequences not considered.
@@ -195,9 +197,9 @@ This last file contains the following stats of each single sequence:
 - Length: Number of nucleotides (or aminoacids) in the sequence.
 - %GC: Percentage of G, C or S (G or C) nucleotides (no case sensitive) in the
   sequence.
-- Mol Weight: Molecular weight of the sequence, calculated according the
+- Mol Weight: Molecular weight of the sequence, calculated using the
   molecular_weight() function from Biopython SeqUtils (does not works with
-  ambiguous residues). http://biopython.org/DIST/docs/api/Bio.SeqUtils-module.html#molecular_weight
+  ambiguous residues).
 ===============================================================================
 '''
 #=========================================================================#
