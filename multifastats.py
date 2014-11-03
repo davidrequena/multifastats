@@ -554,7 +554,7 @@ def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
         if evalen[0]:
             for i in range(len(eachseq.seq)-klen+1):
                 kmerseq = eachseq.seq[i:i+klen]
-                kmerline = '>'+str(eachseq.id)+'_'+str(i)+'\n'+str(kmerseq)+'\n' #If the sequence passes the filter, each k-mer is writen in the file.
+                kmerline = '>'+str(eachseq.id)+'_'+str(i+1)+'\n'+str(kmerseq)+'\n' #If the sequence passes the filter, each k-mer is writen in the file.
                 kmer_handle.write(kmerline)
     seqsfile.close()
     kmer_handle.close()
