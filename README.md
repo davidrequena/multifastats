@@ -3,9 +3,9 @@ multifastats
 
 Multifastats: Multi-Fasta Sequence Stats. Free program based in a python
 script, to calculate basic statistics and outputs and allows to apply some
-filters (N50, %GC, molecular weight, pseudosequences and subgroups for
-length and type filters) for a set of 'fasta' sequences (and optionally for
-each single sequence too).
+filters (N50, %GC, molecular weight, pseudosequences, subgroups and cut in
+k-mers given length and type filters) for a set of 'fasta' sequences
+(and optionally for each single sequence too).
 
 -------------------------------------------------------------------------------
 
