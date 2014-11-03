@@ -555,7 +555,7 @@ def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
     seqsfile = open(filenm,"rU")
     for eachseq in SeqIO.parse(seqsfile, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
-        if evalen[0]:
+        if evalen[0] and klen>0:
             for i in range(len(eachseq.seq)-klen+1):
                 kmerseq = eachseq.seq[i:i+klen]
                 kmerline = '>'+str(eachseq.id)+'_'+str(i+1)+'\n'+str(kmerseq)+'\n' #If the sequence passes the filter, each k-mer is writen in the file.
