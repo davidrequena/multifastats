@@ -546,14 +546,14 @@ def subgroupseq(filenm,lmin,lmax,ctime,warn):
     print '('+sbgrpfilenm+')'
 #=========================================================================#
 def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
-    kmerfilenm=klen+"mer_"+filenm.replace(".","")+"_"+ctime+".fasta"
+    kmerfilenm=str(klen)+"mer_"+filenm.replace(".","")+"_"+ctime+".fasta"
     kmer_handle = open(kmerfilenm, "w") #Creating a new file to write the k-mers.
     seqsfile = open(filenm,"rU")
     for eachseq in SeqIO.parse(seqsfile, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
         if evalen[0]:
             for i in range(len(eachseq.seq)-klen+1):
-                kmerseq = eachseq.seq[i:i+kmer]
+                kmerseq = eachseq.seq[i:i+klen]
                 kmerline = '>'+str(eachseq.id)+'_'+str(i)+'\n'+str(kmerseq)+'\n' #If the sequence passes the filter, each k-mer is writen in the file.
                 kmer_handle.write(kmerline)
     seqsfile.close()
