@@ -136,14 +136,14 @@ For a set of sequences, the parameters calculated are:
   S (G or C) nucleotides (no case sensitive) in the complete set of
   sequences.
 
-For the output of the subgroup of sequences, a .csv file is write in the
-current working directory: subgroup_(FILENAME)_(TIME).csv
+According the output required, some files are written in the current
+working directory:
 
-For the pseudosequence output, a .csv file is write in the current
-working directory: pseudoseq_(FILENAME)_(TIME).csv
+- K-mers: 'k'mer_(FILENAME)_(TIME).fasta
+- Subgroup: subgroup_(FILENAME)_(TIME).fasta
+- Pseudosequence: pseudoseq_(FILENAME)_(TIME).fasta
+- Single analysis: single_(FILENAME)_(TIME).csv
 
-For the single sequence analysis, a .csv file is write in the current
-working directory: sganl_(FILENAME)_(TIME).csv
 This contains stats of each single sequence:
 
 - N: Number of the sequence in the set of sequences.
