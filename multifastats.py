@@ -3,11 +3,9 @@
 import os, sys, platform
 #=========================================================================#
 #To update in every release:
-vers='Version 1.4.7, 30-Oct-2014.'
-versnote='''- Version 1.4.7 (D.R. 30-Oct-2014):
-  Functions improved. New options: upper length cut-off, a fasta
-  output of the selected subset of sequences, the pseudomolecule output and
-  a reduce in the warnings for the sequences not considered.'''
+vers='Version 1.4.8, 02-Nov-2014.'
+versnote='''- Version 1.4.8 (D.R. 02-Nov-2014):
+Functions and messages improved. New option: cut sequences in k-mers.'''
 #=========================================================================#
 dochpini='''
 ===============================================================================
@@ -57,19 +55,21 @@ analysis and pseudosequence options would be given from the beggining.
 \t\t\tto be analyzed: Lmin =< (Sequence Length) =< Lmax.
 \t\t\tYou can provide minimum, maximum or both cut-off
 \t\t\tvalues. Only positive numbers allowed!
--o (or --outsbg):\tProduces an output with the subgroup of sequences
-\t\t\tanalyzed
--s (or --single):\tAdd the single sequence analysis
+-k (or --kmers):\tCut the sequences in all the possible fragments
+\t\t\t of length 'k' (k-mers).
 -p (or --pseudo):\tProduces the 'pseudo-sequence' output. The sequences
 \t\t\twill be concatenated with the letter 'N' (for DNA/RNA)
 \t\t\tor 'X' (for Proteins) repeated the number of times
 \t\t\tindicated after -p
+-o (or --outsbg):\tProduces an output with the subgroup of sequences
+\t\t\tanalyzed
+-s (or --single):\tAdd the single sequence analysis
 
 As example, one command line with all options will be:
 In Windows Terminal:
-  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -s -o
 In Linux Terminal:
-  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -p 100 -s
+  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -s -o
 
 INFO OPTIONS:
 - - - - - - -
@@ -114,7 +114,11 @@ Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
 History:
 '''
-docntend='''- Version 1.4.2 (D.R. 24-Oct-2014):
+docntend='''- Version 1.4.7 (D.R. 30-Oct-2014):
+  Functions improved. New options: upper length cut-off, a fasta
+  output of the selected subset of sequences, the pseudomolecule output and
+  a reduce in the warnings for the sequences not considered.
+- Version 1.4.2 (D.R. 24-Oct-2014):
   Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
   Including the revisions after testing of many users.
@@ -135,10 +139,7 @@ docntend='''- Version 1.4.2 (D.R. 24-Oct-2014):
 
 ***For the Version 1.5, I'm implementing the following new options:
 - Filter by sequence type.
-- Upper length cut-off.
 - Filter by any string in sequence name.
-- A fasta output of the selected subset of sequences.
-- The pseudomolecule output.
 - Top Blast-Hit for each single sequence (given certain parameters).
 
 ...Available coming soon!!!
@@ -213,14 +214,16 @@ mainout=0 #This variable is the state of the type of output for the multifasta a
 testsbg=1 #This variable is the state of produce or not the output of the subgroup of sequences analyzed (1=YES/0=NO).
 testsga=1 #This variable is the state of do or not do the single analysis (1=YES/0=NO).
 testps=1 #This variable is the state of produce or not the pseudosequence output (1=YES/0=NO).
+testkmr=1 #This variable is the state of produce or not the k-mer output (1=YES/0=NO).
 sbginp=0 #This variable is the state of the manual input requirement for the output of the subgroup of sequences analyzed (1=YES/0=NO).
 sgainp=0 #This variable is the state of the manual input requirement for the single analysis (1=YES/0=NO).
 psinp=0 #This variable is the state of the manual input requirement for the pseudopsequence (1=YES/0=NO).
 lctinp=0 #This variable is the state of the manual input requirement for the length cut-off (1=YES/0=NO).
-nrep=0 #This variable is the number of times to repeat the ambiguous residue in the pseudosequence.
-kmrlen=0
+
 minlen=0 #This variable is the minimum length to analyze (0 means no cut-off).
 maxlen=0 #This variable is the maximum length to analyze (0 means no cut-off).
+kmrlen=0 #This variable indicates the length to cut the sequences - kmers (0 means no cut).
+nrep=0 #This variable is the number of times to repeat the ambiguous residue in the pseudosequence.
 #=========================================================================#
 args=[x.lower() for x in sys.argv] #Lowcase list of arguments received
 hlist=['h','-h','help','-help','--help']
@@ -315,14 +318,14 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
             exitval()
-    testsga=0 if (('-s' or '--single') not in args) else 1 #This means that we will do the single analysis if -s option if given.
-    testsbg=0 if (('-o' or '--outsbg') not in args) else 1 #This means that we will do the single analysis if -s option if given.
-    testps=0 if (('-p' or '--pseudo') not in args) else 1 #This means that we will make the pseudosequence output.
+    testsga=0 if (('-s' or '--single') not in args) else 1 #This means that we will do the single analysis if -s option is given.
+    testsbg=0 if (('-o' or '--outsbg') not in args) else 1 #This means that we will produce the output of the subgroup of sequences analyzed if -o option is given.
+    testps=0 if (('-p' or '--pseudo') not in args) else 1 #This means that we will make the pseudosequence output if -p option is given.
 else: #Any other case
     print "Incorrect way to give the arguments. See 'help' with '-h' or '--help' option."
     exitval()
 #=========================================================================#
-def complete(text, state):
+def complete(text, state): #Setting the autocomplete capability of the script.
     for cmd in os.listdir(os.getcwd()):
         if cmd.startswith(text):
             if not state:
@@ -331,7 +334,6 @@ def complete(text, state):
                 state -= 1
 #=========================================================================#
 if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENARIO.
-    #Setting the autocomplete capability of the script
     try:
         import readline #If you have the readline package (Linux), autocompletion enabled.
         readline.parse_and_bind("tab: complete")
@@ -356,7 +358,7 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
             print "You are in "+usersys+". Please, do not use 'TAB' key. Autocomplete not implemented."
         filename=raw_input("File name or Option: ") #Asking for a filename or option, to store in the variable filename.
         options=hlist+vlist+ilist+nlist
-        if filename.lower() in options: #If the input received in filename  is an option instead the name of a file.
+        if filename.lower() in options: #If the input received in filename is an option instead the name of a file.
             maininp=0 #This means that we get a correct file name or option, so we will use this to continue.
             lctinp=0
             if filename.lower() in hlist:
@@ -375,7 +377,7 @@ if maininp: #This means that I need a manual input: THE "USER-INTERACTIVE" SCENA
             else: #We will add more options for info in the future versions.
                 print "\nIncorrect way to give the arguments. See 'help' with '-h' or '--help' option."
             exitval()
-        elif filename in os.listdir(os.getcwd()): #If the input received in filename  is the name of a file.
+        elif filename in os.listdir(os.getcwd()): #If the input received in filename is the name of a file.
             maininp=0 #This means that we get a correct file name or option, so we will use this to continue.
             pass
         else:
@@ -493,12 +495,12 @@ def lenfilter(strseq,strid,lmin,lmax,warn):
     else:
         return 0, ''
 #=========================================================================#
-def N50(lenlist): # N50 calculation, based on the Broad Institute definition: https://www.broad.harvard.edu/crd/wiki/index.php/N50
+def N50(lenlist): #N50 calculation, based on the Broad Institute definition: https://www.broad.harvard.edu/crd/wiki/index.php/N50
     lenlist.sort()
     wghtlist = []
     for i in lenlist:
         wghtlist += [i]*i
-    # Take the median of the weighted list of lengths:
+    #Take the median of the weighted list of lengths:
     if len(wghtlist) % 2 == 0:
         return float(wghtlist[len(wghtlist)/2] + wghtlist[len(wghtlist)/2-1])/2
     else:
@@ -537,7 +539,7 @@ def subgroupseq(filenm,lmin,lmax,ctime,warn):
     for eachseq in SeqIO.parse(multifst, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
         if evalen[0]:
-            SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter is writen in the file.
+            SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter, is writen in the file.
     multifst.close()
     sbgrp_handle.close()
     print 'A .fasta file with the sequences analyzed has been wrote in\nyour current working directory:'
@@ -545,15 +547,19 @@ def subgroupseq(filenm,lmin,lmax,ctime,warn):
 #=========================================================================#
 def kmercutter(filenm,klen,lmin,lmax,ctime,warn):
     kmerfilenm=klen+"mer_"+filenm.replace(".","")+ctime+".fasta"
-    kmer_handle = open(kmerfilenm, "w") #Creating a new file to write the sequences.
+    kmer_handle = open(kmerfilenm, "w") #Creating a new file to write the k-mers.
     seqsfile = open(filenm,"rU")
     for eachseq in SeqIO.parse(seqsfile, "fasta"):
         evalen=lenfilter(str(eachseq.seq),str(eachseq.id),lmin,lmax,warn)
         if evalen[0]:
-            SeqIO.write(eachseq, sbgrp_handle, "fasta") #If the sequence passes the filter is writen in the file.
+            for i in range(len(eachseq.seq)-klen+1):
+                kmerseq = eachseq.seq[i:i+kmer]
+                kmerline = '>'+str(eachseq.id)+'_'+str(i)+'\n'+str(kmerseq)+'\n' #If the sequence passes the filter, each k-mer is writen in the file.
+                kmer_handle.write(kmerline)
     seqsfile.close()
     kmer_handle.close()
-    return kmerfilenm
+    print 'A .fasta file with the k-mers has been wrote in\nyour current working directory:'
+    print '('+kmerfilenm+')'
 #=========================================================================#
 def singanlys(filenm,lmin,lmax,ctime,warn):
     from Bio.SeqUtils import GC, molecular_weight
@@ -656,7 +662,7 @@ else:
     print 'Total %GC in file:\t'+"{0:.2f}".format(totGC)
     print '- '*34+'-'
 #=========================================================================#
-if testps or testsga or testsbg:
+if testps or testsga or testsbg or testkmr:
     import time
     from _socket import timeout
     currTime = time.strftime("%d")+time.strftime("%m")+time.strftime("%y")+time.strftime("%H")+time.strftime("%M")+time.strftime("%S")
@@ -664,7 +670,7 @@ if testps or testsga or testsbg:
     noopt=['n', 'no']
 #=========================================================================#
 if testsbg:
-    if sbginp: #If we are in the user-interactive mode, asking for a valid option for the subgroup output to continue.
+    if sbginp: #If we are in the user-interactive mode, ask for a valid option for the subgroup output to continue.
         while testsbg:
             sbgopt=raw_input("\nDo you want to generate a multifasta file with the sequences analyzed?\nWrite 'Y' to make it or 'N' to continue): ")
             if sbgopt.lower() in yesopt:
@@ -676,13 +682,13 @@ if testsbg:
                 testsbg=0
             else:
                 print "Bad option, try again."
-    else: #If we are in the command-line mode and the parameter for subgroup option is given, do the analysis.
+    else: #If we are in the command-line mode and the parameter for the subgroup output is given, do the analysis.
         subgroupseq(filename,int(minlen),int(maxlen),currTime,wrng)
         print '- '*34+'-'
         timeout(1)
 #=========================================================================#
 if testps:
-    if psinp: #If we are in the user-interactive mode, asking for a valid option for the pseudosequence ooutput to continue.
+    if psinp: #If we are in the user-interactive mode, ask for a valid option for the pseudosequence output to continue.
         while testps:
             psopt=raw_input("\nDo you want to generate a pseudosequence?\nWrite 'Y' to build it or 'N' to continue): ")
             if psopt.lower() in yesopt:
@@ -704,8 +710,36 @@ if testps:
                 testps=0
             else:
                 print "Bad option, try again."
-    else: #If we are in the command-line mode and the parameter for pseudosequence option is given, do the analysis.
+    else: #If we are in the command-line mode and the parameters for pseudosequence output were given, do the analysis.
         pseudoseq(filename,int(nrep),int(minlen),int(maxlen),currTime,wrng)
+        print '- '*34+'-'
+        timeout(1)
+#=========================================================================#
+if testkmr:
+    if kmrinp: #If we are in the user-interactive mode, ask if cut the sequences in kmers to continue.
+        while testkmr:
+            kmropt=raw_input("\nDo you want to cut the sequences in fragments of length 'k'?\nWrite 'Y' to do it or 'N' to continue): ")
+            if kmropt.lower() in yesopt:
+                kmrchk=1
+                while kmrchk:
+                    kmrlen=raw_input("Please, give a NUMBER for the length of the fragments (k-mers): ")
+                    try:
+                        if int(kmrlen)>=0:
+                            print '\nDONE:'
+                            kmercutter(filename,int(kmrlen),int(minlen),int(maxlen),currTime,wrng) #Correct length of kmers, continue.
+                            print '- '*29+'-'
+                            kmrchk=0
+                            testkmr=0
+                        else:
+                            print "Incorrect value provided for the length of the fragments, try again."
+                    except ValueError:
+                        print "A positive number is required as a value for length. Try again."
+            elif kmropt.lower() in noopt:
+                testkmr=0
+            else:
+                print "Bad option, try again."
+    else: #If we are in the command-line mode and the parameters for the kmer output were given, do the analysis.
+        kmercutter(filename,int(kmrlen),int(minlen),int(maxlen),currTime,wrng)
         print '- '*34+'-'
         timeout(1)
 #=========================================================================#
