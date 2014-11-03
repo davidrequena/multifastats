@@ -4,7 +4,7 @@ import os, sys, platform
 #=========================================================================#
 #To update in every release:
 vers='Version 1.4.8, 02-Nov-2014.'
-versnote='''- Version 1.4.8 (D.R. 02-Nov-2014):
+versnote='''- Version 1.4.8 (D.R. 03-Nov-2014):
 Functions and messages improved. New option: cut sequences in k-mers.'''
 #=========================================================================#
 dochpini='''
@@ -219,7 +219,7 @@ sbginp=0 #This variable is the state of the manual input requirement for the out
 sgainp=0 #This variable is the state of the manual input requirement for the single analysis (1=YES/0=NO).
 psinp=0 #This variable is the state of the manual input requirement for the pseudopsequence (1=YES/0=NO).
 lctinp=0 #This variable is the state of the manual input requirement for the length cut-off (1=YES/0=NO).
-
+kmrinp=0 #This variable is the state of the manual input requirement for the cut in kmers (1=YES/0=NO).
 minlen=0 #This variable is the minimum length to analyze (0 means no cut-off).
 maxlen=0 #This variable is the maximum length to analyze (0 means no cut-off).
 kmrlen=0 #This variable indicates the length to cut the sequences - kmers (0 means no cut).
