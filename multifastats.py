@@ -67,9 +67,9 @@ analysis and pseudosequence options would be given from the beggining.
 
 As example, one command line with all options will be:
 In Windows Terminal:
-  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -s -o
+  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 In Linux Terminal:
-  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -s -o
+  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 
 INFO OPTIONS:
 - - - - - - -
