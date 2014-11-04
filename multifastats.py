@@ -225,7 +225,7 @@ lctinp=0 #This variable is the state of the manual input requirement for the len
 kmrinp=0 #This variable is the state of the manual input requirement for the cut in kmers (1=YES/0=NO).
 minlen=0 #This variable is the minimum length to analyze (0 means no cut-off).
 maxlen=0 #This variable is the maximum length to analyze (0 means no cut-off).
-kmrlen=0 #This variable indicates the length to cut the sequences - kmers (0 means no cut).
+kmrlen=0 #This variable indicates the length to cut the sequences - kmers.
 nrep=0 #This variable is the number of times to repeat the ambiguous residue in the pseudosequence.
 #=========================================================================#
 args=[x.lower() for x in sys.argv] #Lowcase list of arguments received
@@ -288,12 +288,7 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             indlmin=args.index('--lmin')
         try:
-            float(sys.argv[indlmin+1])
-            if float(sys.argv[indlmin+1])>=0:
-                minlen=float(sys.argv[indlmin+1])
-            else:
-                print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
-                exitval()
+            minlen=float(sys.argv[indlmin+1])
         except:
             print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
             exitval()
@@ -304,9 +299,6 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             indlmax=args.index('--lmax')
         try:
             maxlen=float(sys.argv[indlmax+1])
-            if maxlen<0:
-                print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
-                exitval()
         except:
             print "Incorrect value provided for maximum length. See 'help' with '-h' or '--help' option."
             exitval()
@@ -316,11 +308,11 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             indps=args.index('--pseudo')
         try:
-            nrep=int(sys.argv[indps+1]) if int(sys.argv[indps+1])>0 else exitval()
-#            if nrep<0:
-#                print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
-#                exitval()
+            nrep=int(sys.argv[indps+1])
         except:
+            print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
+            exitval()
+        if nrep<0:
             print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
             exitval()
     else:
@@ -332,10 +324,10 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
             indkm=args.index('--kmer')
         try:
             kmrlen=int(sys.argv[indkm+1])
-            if kmrlen<=0:
-                print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
-                exitval()
         except:
+            print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
+            exitval()
+        if kmrlen<=0:
             print "Incorrect value provided for the length of k-mers. See 'help' with '-h' or '--help' option."
             exitval()
     else:
