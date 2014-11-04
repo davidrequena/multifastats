@@ -288,8 +288,10 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             indlmin=args.index('--lmin')
         try:
-            minlen=float(sys.argv[indlmin+1])
-            if minlen<0:
+            float(sys.argv[indlmin+1])
+            if float(sys.argv[indlmin+1])>=0:
+                minlen=float(sys.argv[indlmin+1])
+            else:
                 print "Incorrect value provided for minimum length. See 'help' with '-h' or '--help' option."
                 exitval()
         except:
