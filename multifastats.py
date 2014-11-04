@@ -316,10 +316,10 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         except:
             indps=args.index('--pseudo')
         try:
-            nrep=int(sys.argv[indps+1])
-            if nrep<0:
-                print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
-                exitval()
+            nrep=int(sys.argv[indps+1]) if int(sys.argv[indps+1])>0 else exitval()
+#            if nrep<0:
+#                print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
+#                exitval()
         except:
             print "Incorrect value provided for the number of repeats. See 'help' with '-h' or '--help' option."
             exitval()
