@@ -191,7 +191,7 @@ History:
   total residues in the multifasta by a given file name inside the
   script.
 
-***For the Version 1.5, I'm implementing the following new options:
+***For the Version 1.5, I will add the following new options:
 - Filter by sequence type.
 - Filter by any string in sequence name.
 - Top Blast-Hit for each single sequence (given certain parameters).
