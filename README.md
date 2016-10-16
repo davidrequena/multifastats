@@ -2,9 +2,9 @@ multifastats
 ============
 
 Multifastats: Multi-Fasta Sequence Stats. Free program based in a python
-script, to calculate basic outputs, some statistics and allows to apply some
-filters (N50, %GC, molecular weight, pseudosequences, subgroups and cut in
-k-mers given length and type filters) for a set of 'fasta' sequences
+script, to make basic outputs, calculate some statistics and also allows to
+apply some filters (N50, %GC, molecular weight, pseudosequences, cut in
+k-mers and subgroups by length and/or type) for a set of 'fasta' sequences
 (and optionally for each single sequence, too).
 
 -------------------------------------------------------------------------------
@@ -194,12 +194,13 @@ Requests for new options are welcome!
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 REALLY IMPORTANT TO DECLARE:
 - - - - - - - - - - - - - - -
-Some parts of the code were adapted from multiple available free sources
+Some parts of the code were adapted from multiple available free sources,
 developed by the scientific community, like SQUID's seqstat, Peter 'maubp' N50
 (seqanswers.com) and biopython packages. This code is free to use, modify and
 distribute under the MIT License.
 
-***Thanks to my lab friends for exhaustively testing my code as intended bad users.
+*** Thanks to my lab friends for exhaustively testing my code as intended
+bad users.
 
 And please, share your doubts, comments, request to add new options or
 improves with us! Write to: david.requena.a@upch.pe
