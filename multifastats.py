@@ -140,7 +140,7 @@ History:
   The basic version, just calculate the N50, %GC, number of sequences and total
   residues in the multifasta by a given file name inside the script.
 
-***For the Version 1.5, I'm implementing the following new options:
+***For the Version 1.5, I will add the following new options:
 - Filter by sequence type.
 - Filter by any string in sequence name.
 - Top Blast-Hit for each single sequence (given certain parameters).
@@ -151,11 +151,13 @@ Requests for new options are welcome!
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Really important to declare:
 ----------------------------
-Some parts of the code was adapted from multiple sources freely available
+Some parts of the code were adapted from multiple available free sources,
 developed by the scientific community, like SQUID's seqstat, Peter 'maubp' N50
 (seqanswers.com) and biopython packages. This code is free to use, modify and
 distribute under the MIT License.
-***Thanks to my lab friends by the exhaustively testing as intended bad users.
+
+*** Thanks to my lab friends for exhaustively testing my code as intended
+bad users.
 
 And please, share your doubts, comments, request to add new options or
 improves with us! Write to: david.requena.a@upch.pe
