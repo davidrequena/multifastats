@@ -94,7 +94,7 @@ need to write '>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'''
 dochpmid=' Made by David Requena. Laboratory of Bioinformatics'
 dochpend='''and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
-This code will be updated and freely available in GitHub:
+This code is for free and will be updated in GitHub:
 https://github.com/lbbm-upch/multifastats
 
 Please, share your doubts, comments, request to add new options or improves
