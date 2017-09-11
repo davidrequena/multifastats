@@ -9,7 +9,7 @@ allows to apply some filters and select subgroups by length and/or type.
 
 -------------------------------------------------------------------------
 
-Version 1.4.8, 03-Nov-2014.
+>Version 1.4.8, 03-Nov-2014.
 Made by David Requena.
 Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
@@ -46,7 +46,7 @@ USAGE:
 - - - -
 The script multifastats.py has to be in the same directory of your file
 to be analyzed. If you want to use the program from any location, please
-read the "Optional" section.
+read the 'Optional' section.
 
 There are two modes:
 
@@ -57,39 +57,34 @@ you the name of the file you want to analyze (autocomplete allowed).
 
 Run the script multifastats.py as follows:
 
-  -In Windows:  Just run the script with doble-click!
-        Or from the terminal:   >>~$ multifastats.py
-  -In Linux:\tOne of the following two ways:
-        >>~$ python multifastats.py   or  >>~$ ./multifastats.py
+In Windows:
+>Just run the script with doble-click! Or from the terminal:
+>>~$ multifastats.py
+
+In Linux:
+>One of the following two ways:
+>>~$ python multifastats.py
+>or
+>>~$ ./multifastats.py
 
 b) 'Command-Line':
 Some options like file name, length cut-off, single analysis and 
 pseudosequence options should be given from the beggining.
 
--f (or --file): Name of the input file (including the
-            extension). Example: inputfile.fasta
--l (or --Lmin): Minimum sequence length to be analyzed
--L (or --Lmax): Maximum sequence length to be analyzed
-            Cutf-off value for the length of the sequences to be
-	    analyzed: Lmin =< (Sequence Length) =< Lmax.
-            You can provide minimum, maximum or both.
-	    Only positive numbers allowed!
--k (or --kmers):   Cut the sequences in all the possible fragments
-            of length 'k' (k-mers).
--p (or --pseudo):   Produces the 'pseudo-sequence' output. The
-            sequences will be concatenated with the letter 'N'
-            (for DNA/RNA) or 'X' (for Proteins), repeated the number
-            of times indicated after the option '-p'
--o (or --outsbg):   Produces an output with the subgroup of sequences
-            analyzed
--s (or --single):   Add the single sequence analysis (see INFO)
+- -f (or --file): Name of the input file (including the extension). Example: inputfile.fasta
+- -l (or --Lmin): Minimum sequence length to be analyzed.
+- -L (or --Lmax): Maximum sequence length to be analyzed. Cutf-off value for the length of the sequences to be analyzed: Lmin =< (Sequence Length) =< Lmax. You can provide minimum, maximum or both. Only positive numbers allowed!
+- -k (or --kmers):   Cut the sequences in all the possible fragments of length 'k' (k-mers).
+- -p (or --pseudo):   Produces the 'pseudo-sequence' output. The sequences will be concatenated with the letter 'N' (for DNA/RNA) or 'X' (for Proteins), repeated the number of times indicated after the option '-p'
+- -o (or --outsbg):   Produces an output with the subgroup of sequences analyzed.
+- -s (or --single):   Add the single sequence analysis (see INFO).
 
 Examples using all options:
-Windows Terminal:
-  >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
+>Windows Terminal:
+>>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 
-Linux Terminal:
-  >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
+>Linux Terminal:
+>>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 
 - - - - - - -
 INFO OPTIONS:
@@ -112,9 +107,7 @@ of your computer, just copy the script to '/usr/local/bin' with permisions
 >>~$ sudo chmod +xr multifastats.py
 >>~$ sudo mv multifastats.py /usr/local/bin
 
-Then, you could call the program from any location in your user. So,
-instead of write '>>~$ python multifastats.py' now you'll just need to write
-'>>~$ multifastats.py'
+Then, you could call the program from any location in your user. So, instead of write '>>~$ python multifastats.py' now you'll just need to write '>>~$ multifastats.py'
 
 -------------------------------------------------------------------------
 
