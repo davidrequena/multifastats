@@ -94,8 +94,8 @@ dochpend='''and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, P
 This program is free and will be updated in the GitHub repository:
 https://github.com/lbbm-upch/multifastats
 
-Please, share your doubts, comments, request to add new options or improves
-with us! Write to: david.requena.a@upch.pe
+Please, share your doubts, comments, request for new options or improves with us!
+Write to: d.requena.a@gmail.com
 Thank you!
 ===============================================================================
 '''
