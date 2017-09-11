@@ -13,12 +13,11 @@ dochpini='''
 ===============================================================================
 Multifastats: Multi-Fasta Sequence Stats
 -----------------------------------------
-Python script to calculate basic genomic statistics for a set of sequences,
-and optionally for each single sequence, too.
+Python script to produce basic genomic statistics and outputs for a set
+of fasta sequences.
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 REQUIREMENTS:
 - - - - - - -
-To run this program, python 2.7 and the following packages are required:
 * python 2.7 (x86 - 32 bits)
   https://www.python.org/download/releases/2.7.8/
 * biopython
@@ -27,8 +26,8 @@ To run this program, python 2.7 and the following packages are required:
   https://pypi.python.org/pypi/pyreadline/
 Preferably, use python v2.7 32-bits because Biopython is only compatible with
 x86 but not x64 (a numpy issue). So, you have to use the pyreadline 32-bits
-version. I made this program with biopython v1.64 and pyreadline v2.0, but
-other versions will be compatible.
+version. I made this program using biopython v1.64 and pyreadline v2.0, but
+other versions should be compatible.
 
 USAGE:
 - - -
@@ -38,34 +37,34 @@ analyze. If you want to use the program from any location, please read the
 
 There are two modes:
 1) 'User-Interactive': The program will ask for a file or option in each step.
-To use in the program in this mode, run the script multifastats.py as follows:
+To use this mode, run the script multifastats.py as follows:
   -In Windows:\tJust run the script with doble-click!
   \t\tOr from the terminal:    >>~$ multifastats.py
-  -In Linux:\tOne of the following two ways:
+  -In Linux:\tOne of the two following ways:
   \t\t>>~$ python multifastats.py   or   >>~$ ./multifastats.py
 
 2) 'Command-Line': Some options like file name, length cut-off, single
-analysis and pseudosequence options would be given from the beggining.
+analysis and pseudosequence should be given from the beggining.
 
--f (or --file): \tAllows to give an input file name (including the
-\t\t\textension). As example: inputfile.fasta
+-f (or --file): \tName of the input file (including the extension).
+\t\tExample: inputfile.fasta
 -l (or --Lmin): \tMinimum sequence length to be analyzed
 -L (or --Lmax): \tMaximum sequence length to be analyzed
-\t\t\tAdd a cutf-off value for the length of the sequences
-\t\t\tto be analyzed: Lmin =< (Sequence Length) =< Lmax.
-\t\t\tYou can provide minimum, maximum or both cut-off
-\t\t\tvalues. Only positive numbers allowed!
+\t\t\tCutf-off value for the length of the sequences to be
+\t\t\tanalyzed: Lmin =< (Sequence Length) =< Lmax.
+\t\t\tYou can provide minimum, maximum or both.
+\t\t\tOnly positive numbers allowed!
 -k (or --kmers):\tCut the sequences in all the possible fragments
 \t\t\t of length 'k' (k-mers).
 -p (or --pseudo):\tProduces the 'pseudo-sequence' output. The sequences
 \t\t\twill be concatenated with the letter 'N' (for DNA/RNA)
-\t\t\tor 'X' (for Proteins) repeated the number of times
-\t\t\tindicated after -p
+\t\t\tor 'X' (for Proteins), repeated as many times
+\t\t\tas indicated after the option -p.
 -o (or --outsbg):\tProduces an output with the subgroup of sequences
 \t\t\tanalyzed
--s (or --single):\tAdd the single sequence analysis
+-s (or --single):\tAdd the single sequence analysis (see INFO)
 
-As example, one command line with all options will be:
+Examples using all options:
 In Windows Terminal:
   >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 In Linux Terminal:
@@ -73,7 +72,7 @@ In Linux Terminal:
 
 INFO OPTIONS:
 - - - - - - -
-You will give some arguments to get some program info:
+These arguments provide some program info:
 -h (or --help)\t :\tGeneral description and usage of the program.
 -v (or --version):\tVersion (and revision) of the program.
 -i (or --info)\t :\tInformation about the parameters and outputs.
@@ -81,20 +80,18 @@ You will give some arguments to get some program info:
 
 Optional:
 - - - - -
-Maybe you will have more fun if you copy the script to '/usr/local/bin' 
-and give some permisions (chmod +xr). This will allow you to call it and use
-directly from the terminal in any directory of your computer and allow to
-autocomplete the name of any file (not only python scripts).
-You will do that with the following commands in the unix terminal:
+To be able to call the program directly from the terminal in any directory
+of your computer, just copy the script to '/usr/local/bin' with permisions
+(chmod +xr). Example (Linux terminal):
   >>~$ sudo chmod +xr multifastats.py
   >>~$ sudo mv multifastats.py /usr/local/bin
-Then, you will call the program from any location in your user, directly from
-the command line. So, instead to write '>>~$ python multifastats.py' you just
-need to write '>>~$ multifastats.py'
+Then, you could call the program from any location in your user. So, instead
+of write '>>~$ python multifastats.py' now you'll just need to write
+'>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'''
 dochpmid=' Made by David Requena. Laboratory of Bioinformatics'
 dochpend='''and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
-This code is for free and will be updated in GitHub:
+This program is free and will be updated in the GitHub repository:
 https://github.com/lbbm-upch/multifastats
 
 Please, share your doubts, comments, request to add new options or improves
@@ -118,27 +115,29 @@ docntend='''
 History:
 
 - Version 1.4.7 (D.R. 30-Oct-2014):
-  Functions improved. New options: upper length cut-off, a fasta
-  output of the selected subset of sequences, the pseudomolecule output and
-  a reduce in the warnings for the sequences not considered.
+  Functions improved. New options: upper length cut-off. Two new
+  outputs: the pseudomolecule and a fasta output of the selected
+  subset of sequences. A reduction in the warnings for the sequences
+  not considered.
 - Version 1.4.2 (D.R. 24-Oct-2014):
   Adding autocomplete using tab in Windows and MAC OS.
 - Version 1.4.1 (D.R. 23-Oct-2014):
-  Including the revisions after testing of many users.
+  Minor bugs fixed.
 - Version 1.4 (D.R. 23-Oct-2014):
-  Adding length cut-off, indicate type(s) of sequences and Windows
-  compatibility. Public release in GitHub (under MIT License).
+  Adding type(s) of sequences, length cut-off and Windows compatibility.
+  Now publicly available in GitHub and free, under the MIT License.
 - Version 1.3 (D.R. 22-Oct-2014):
-  Adding command-line mode with -f, -s and info options.
-  Adding version, notes, help and full documentation.
+  Adding the command-line mode with -f and -s options.
+  Adding full documentation (info, version, notes and help).
 - Version 1.2 (D.R. 21-Oct-2014):
-  Adding autocomplete using tab, single sequences analysis and time-csv output
-  in current directory.
+  Adding autocomplete using tab, analysis by single sequence and
+  the output (time-csv) in the current directory.
 - Version 1.1 (D.R. 21-Oct-2014):
-  Adding user-interactive mode, min, max, average length and 0.00 format.
+  Adding the user-interactive mode, min, max and average length, and the
+  two decimal digits format.
 - Version 1.0 (D.R. 20-Oct-2014):
-  The basic version, just calculate the N50, %GC, number of sequences and total
-  residues in the multifasta by a given file name inside the script.
+  The basic version, which only calculates the N50, %GC, number of
+  sequences and total residues in the multifasta file.
 
 ***For the Version 1.5, I will add the following new options:
 - Filter by sequence type.
@@ -151,16 +150,15 @@ Requests for new options are welcome!
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Really important to declare:
 ----------------------------
-Some parts of the code were adapted from multiple available free sources,
-developed by the scientific community, like SQUID's seqstat, Peter 'maubp' N50
-(seqanswers.com) and biopython packages. This code is free to use, modify and
+Some parts of the code were adapted from multiple free sources, like biopython
+packages, and developed by the scientific community, like SQUID's seqstat and
+Peter 'maubp' N50 code (seqanswers.com). This code is free to use, modify and
 distribute under the MIT License.
 
-*** Thanks to my lab friends for exhaustively testing my code as intended
-bad users.
+*** Thanks to my lab friends for the exhaustive testing as intended bad users.
 
 And please, share your doubts, comments, request to add new options or
-improves with us! Write to: david.requena.a@upch.pe
+improves with us! Write to: d.requena.a@gmail.com
 Thank you!
 ===============================================================================
 '''
@@ -170,39 +168,37 @@ docinfo='''
 ===============================================================================
 Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------
-For sets of sequences, the parameters calculated are:
+For a set of sequences, the parameters calculated are:
 
-- Type of sequences: Indicates the type(s) of sequences in the file (DNA,
-  RNA or protein).
-- Num of Sequences: Count the total number of sequences in the multifasta file.
-- Min, Max and Average length: Gives the minimum, maximum and average sequence
-  length in the multifasta file, respectively.
-- N50 value: This parameter is calculated using the Broad Institute definition:
-  https://www.broad.harvard.edu/crd/wiki/index.php/N50
-- Number of residues: Count the total number of nucleotides (or aminoacids) in
-  all the sequences in the multifasta file.
-- Total %GC in file: This parameter calculates the percentage of G, C or S (G
-  or C) nucleotides (no case sensitive) in the complete set of sequences.
+- Type of sequences: Type(s) of sequences (DNA, RNA or protein) in the file.
+- Num of Sequences: The total number of sequences in the multifasta file.
+- Min, Max and Average length: Gives the minimum, maximum and average
+  sequence length in the multifasta file, respectively.
+- N50 value: This parameter is calculated using the Broad Institute
+  definition: https://www.broad.harvard.edu/crd/wiki/index.php/N50
+- Number of residues: The total number of nucleotides (or aminoacids)
+  in all the sequences in the multifasta file.
+- Total %GC in file: The percentage of G, C or S (G or C) nucleotides in
+  the complete set of sequences (no case sensitive).
 
-According the output required, some files are written in the current working
-directory:
+According to the output required, some files are written in the current
+working directory:
 
-- K-mers: 'k'mer_(FILENAME)_(TIME).fasta
+- K-mers: kmer_(FILENAME)_(TIME).fasta
 - Subgroup: subgroup_(FILENAME)_(TIME).fasta
 - Pseudosequence: pseudoseq_(FILENAME)_(TIME).fasta
 - Single analysis: single_(FILENAME)_(TIME).csv
 
-This last file contains the following stats of each single sequence:
+The last file contains, for each single sequence, the following stats:
 
-- N: Number of the sequence in the set of sequences.
+- N: Ordinal number of the sequence in the set of sequences.
 - ID: ID (header) of the sequence.
-- Type: Sequence type (DNA, RNA or protein).
 - Length: Number of nucleotides (or aminoacids) in the sequence.
-- %GC: Percentage of G, C or S (G or C) nucleotides (no case sensitive) in the
-  sequence.
+- %GC: Percentage of G, C or S (G or C) nucleotides (no case sensitive)
+  in the sequence.
 - Mol Weight: Molecular weight of the sequence, calculated using the
-  molecular_weight() function from Biopython SeqUtils (does not works with
-  ambiguous residues).
+  molecular_weight() function from the Biopython SeqUtils (does not works
+  with ambiguous residues).
 ===============================================================================
 '''
 #=========================================================================#
@@ -455,7 +451,7 @@ if lctinp:
                     clinp=1 #Correct value of L given, continue.
                     maxlen=float(tochklc)
                 else:
-                    print "Incorrect value provided for maximum length."
+                    print "Incorrect value provided as maximum length."
                     pass
             except ValueError:
                 print "A positive number is required as a value for length."
@@ -494,7 +490,7 @@ def lenfilter(strseq,strid,lmin,lmax,warn):
             return 1, typeseq
         elif typeseq=='noseq': #If invalid format, ignore this sequence.
             if warn==1:
-                print 'WARNING!: Sequence '+strid+' has invalid format and not taken in account.'
+                print 'WARNING!: Sequence '+strid+' has an invalid format and was not taken in account.'
             return 0, ''
         else:
             return 0, ''
@@ -503,7 +499,7 @@ def lenfilter(strseq,strid,lmin,lmax,warn):
             return 1, typeseq
         elif typeseq=='noseq': #If invalid format, ignore this sequence.
             if warn==1:
-                print 'WARNING!: Sequence '+strid+' has invalid format and not taken in account.'
+                print 'WARNING!: Sequence '+strid+' has an invalid format and was not taken in account.'
             return 0, ''
         else:
             return 0, ''
@@ -635,7 +631,7 @@ if len(contgslen)>0:
     totGC=numGC*100.0/totlen
     wrng=0 #Turn off the warnings for ignored sequences, these have to be shown at this point.
 else:
-    print "There is no sequence to analyze. Please, check your file and\nthe value of length given."
+    print "There is no sequence to analyze. Please, check your file and\nthe length provided."
     exitval()
 #=========================================================================#
 if mainout:
@@ -746,9 +742,9 @@ if testkmr:
                             kmrchk=0
                             testkmr=0
                         else:
-                            print "Incorrect value provided for the length of the fragments, try again."
+                            print "Incorrect value provided as length of the fragments, try again."
                     except ValueError:
-                        print "A positive number is required as a value for length. Try again."
+                        print "A positive number is required as length. Try again."
             elif kmropt.lower() in noopt:
                 testkmr=0
             else:
