@@ -80,7 +80,7 @@ pseudosequence options should be given from the beggining.
 - -o (or --outsbg):   Produces an output with the subgroup of sequences analyzed.
 - -s (or --single):   Add the single sequence analysis (see INFO).
 
-Examples using all options:
+Examples using all the options:
 >Windows Terminal:
 >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 
@@ -156,7 +156,7 @@ The last file contains, for each single sequence, the following stats:
 Current version:
 
 - Version 1.4.9 (D.R. 11-Sep-2017):
-  Messages and descriptions improved.
+  Messages and descriptions improved. Email address updated.
 
 History:
 
