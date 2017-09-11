@@ -9,7 +9,7 @@ allows to apply some filters and select subgroups by length and/or type.
 
 -------------------------------------------------------------------------
 
->Version 1.4.8, 03-Nov-2014.
+>Version 1.4.9, 11-Sep-2017.
 Made by David Requena.
 Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
@@ -155,11 +155,13 @@ The last file contains, for each single sequence, the following stats:
 
 Current version:
 
-- Version 1.4.8 (D.R. 03-Nov-2014):
-  Functions and messages improved. New option: cut sequences in k-mers.
+- Version 1.4.9 (D.R. 11-Sep-2017):
+  Messages and descriptions improved.
 
 History:
 
+- Version 1.4.8 (D.R. 03-Nov-2014):
+  Functions and messages improved. New option: cut sequences in k-mers.
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off. Two new
   outputs: the pseudomolecule and a fasta output of the selected
