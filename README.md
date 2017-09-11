@@ -87,6 +87,7 @@ pseudosequence options should be given from the beggining.
 Examples using all options:
 Windows Terminal:
   >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
+
 Linux Terminal:
   >>~$ python multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 
