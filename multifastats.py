@@ -3,9 +3,9 @@
 import os, sys, platform
 #=========================================================================#
 #To update in every release:
-vers='Version 1.4.8, 03-Nov-2014.'
-versnote='''- Version 1.4.8 (D.R. 03-Nov-2014):
-Functions and messages improved. New option: cut sequences in k-mers.'''
+vers='Version 1.4.9, 09-Sep-2017.'
+versnote='''- Version 1.4.9 (D.R. 11-Sep-2017):
+Messages and descriptions improved. New email for contact.'''
 #=========================================================================#
 dochpini='''
 ===============================================================================
@@ -114,6 +114,8 @@ Current version:
 docntend='''
 History:
 
+- Version 1.4.8 (D.R. 03-Nov-2014):
+  Functions and messages improved. New option: cut sequences in k-mers.
 - Version 1.4.7 (D.R. 30-Oct-2014):
   Functions improved. New options: upper length cut-off. Two new
   outputs: the pseudomolecule and a fasta output of the selected
