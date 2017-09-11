@@ -83,7 +83,7 @@ pseudosequence options should be given from the beggining.
             analyzed.
 -s (or --single):   Add the single sequence analysis (see INFO).
 
-Examples using all options:
+Examples using all the options:
 Windows Terminal:
   >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 Linux Terminal:
