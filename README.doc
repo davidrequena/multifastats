@@ -45,7 +45,7 @@ USAGE:
 - - - -
 The script multifastats.py has to be in the same directory of your file
 to be analyzed. If you want to use the program from any location, please
-read the "Optional" section.
+read the 'Optional' section.
 
 There are two modes:
 
@@ -157,7 +157,7 @@ The last file contains, for each single sequence, the following stats:
 Current version:
 
 - Version 1.4.9 (D.R. 11-Sep-2017):
-  Messages and descriptions improved.
+  Messages and descriptions improved. Email address updated.
 
 History:
 
