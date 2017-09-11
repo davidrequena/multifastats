@@ -5,7 +5,7 @@ import os, sys, platform
 #To update in every release:
 vers='Version 1.4.9, 09-Sep-2017.'
 versnote='''- Version 1.4.9 (D.R. 11-Sep-2017):
-Messages and descriptions improved. New email for contact.'''
+Messages and descriptions improved. Email address updated.'''
 #=========================================================================#
 dochpini='''
 ===============================================================================
@@ -64,7 +64,7 @@ analysis and pseudosequence should be given from the beggining.
 \t\t\tanalyzed
 -s (or --single):\tAdd the single sequence analysis (see INFO)
 
-Examples using all options:
+Examples using all the options:
 In Windows Terminal:
   >>~$ multifastats.py -f inputfile.fasta -l 21 -L 400 -k 9 -p 100 -o -s
 In Linux Terminal:
