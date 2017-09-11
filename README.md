@@ -106,6 +106,7 @@ of your computer, just copy the script to '/usr/local/bin' with permisions
 (chmod +xr). Example (Linux terminal):
 
 >>~$ sudo chmod +xr multifastats.py
+
 >>~$ sudo mv multifastats.py /usr/local/bin
 
 Then, you could call the program from any location in your user. So, instead of writting '>>$ python multifastats.py' now you just need to write '>>$ multifastats.py'.
