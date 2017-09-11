@@ -4,7 +4,7 @@ multifastats
 Multifastats: Multi-Fasta Sequence Stats. Free python-based program that,
 from a set of a set of 'fasta' sequences (as group or individually),
 produces basic outputs and statistics (N50, %GC, molecular weight, cut
-in kmers and concatenate sequences using defined spacers). And also
+in k-mers and concatenate sequences using defined spacers). And also
 allows to apply some filters and select subgroups by length and/or type.
 
 -------------------------------------------------------------------------
