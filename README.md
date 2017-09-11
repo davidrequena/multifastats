@@ -76,7 +76,7 @@ pseudosequence options should be given from the beggining.
 - -l (or --Lmin): Minimum sequence length to be analyzed.
 - -L (or --Lmax): Maximum sequence length to be analyzed. Cutf-off value for the length of the sequences to be analyzed: Lmin =< (Sequence Length) =< Lmax. You can provide minimum, maximum or both. Only positive numbers allowed!
 - -k (or --kmers):   Cut the sequences in all the possible fragments of length 'k' (k-mers).
-- -p (or --pseudo):   Produces the 'pseudo-sequence' output. The sequences will be concatenated with the letter 'N' (for DNA/RNA) or 'X' (for Proteins), repeated the number of times indicated after the option '-p'
+- -p (or --pseudo):   Produces the 'pseudo-sequence' output. The sequences will be concatenated with the letter 'N' (for DNA/RNA) or 'X' (for Proteins), repeated as many times as indicated after the option '-p'
 - -o (or --outsbg):   Produces an output with the subgroup of sequences analyzed.
 - -s (or --single):   Add the single sequence analysis (see INFO).
 
@@ -90,7 +90,7 @@ Examples using all options:
 - - - - - - -
 INFO OPTIONS:
 - - - - - - -
-You will give some arguments to get some program info:
+These arguments provide some program info:
 
 * -h (or --help)		:	General description and usage of the program.
 * -v (or --version)	:	Version and revision of the program.
