@@ -64,6 +64,7 @@ In Windows:
 In Linux:
 >One of the following two ways:
 >>~$ python multifastats.py
+
 >or
 >>~$ ./multifastats.py
 
@@ -107,7 +108,7 @@ of your computer, just copy the script to '/usr/local/bin' with permisions
 >>~$ sudo chmod +xr multifastats.py
 >>~$ sudo mv multifastats.py /usr/local/bin
 
-Then, you could call the program from any location in your user. So, instead of write '>>~$ python multifastats.py' now you'll just need to write '>>~$ multifastats.py'
+Then, you could call the program from any location in your user. So, instead of writting '>>$ python multifastats.py' now you just need to write '>>$ multifastats.py'.
 
 -------------------------------------------------------------------------
 
