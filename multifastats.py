@@ -3,7 +3,7 @@
 import os, sys, platform
 #=========================================================================#
 #To update in every release:
-vers='Version 1.4.9, 09-Sep-2017.'
+vers='Version 1.4.9, 11-Sep-2017.'
 versnote='''- Version 1.4.9 (D.R. 11-Sep-2017):
 Messages and descriptions improved. Email address updated.'''
 #=========================================================================#
@@ -89,10 +89,10 @@ Then, you could call the program from any location in your user. So, instead
 of write '>>~$ python multifastats.py' now you'll just need to write
 '>>~$ multifastats.py'
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'''
-dochpmid=' Made by David Requena. Laboratory of Bioinformatics'
+dochpmid=' Made by David Requena. For the Laboratory of Bioinformatics'
 dochpend='''and Molecular Biology, Universidad Peruana Cayetano Heredia. Lima, Peru.
 This program is free and will be updated in the GitHub repository:
-https://github.com/lbbm-upch/multifastats
+https://github.com/davidrequena/multifastats
 
 Please, share your doubts, comments, request for new options or improves with us!
 Write to: d.requena.a@gmail.com
@@ -102,7 +102,7 @@ Thank you!
 docvrini='''
    Multifastats: Multi-Fasta Sequence Stats
 ----------------------------------------------'''
-docvrend=' Revised by David Requena. LBBM, UPCH. Lima, Peru.\n'
+docvrend=' Revised by David Requena.\n'
 docntini='''
 ===============================================================================
 *** VERSION NOTES ***
@@ -238,8 +238,8 @@ if len(sys.argv)==1: #This is the case when the script NO receive arguments (***
     print '- '*29+'-'
     print 'Multifastats: Multi-Fasta Sequence Stats'
     print '-'*41
-    print 'Show basic genomic statistics for a given set of sequences\nand optionally for each single sequence, too.'
-    print 'Made by D.R. LBBM, UPCH. '+vers
+    print 'Python script to produce basic genomic statistics and outputs\nfor a set of fasta sequences.'
+    print 'Made by D.R. For the LBBM, UPCH. '+vers
     mainout=1
     maininp=1
     lctinp=1
