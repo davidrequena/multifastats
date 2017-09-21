@@ -10,7 +10,7 @@ allows to apply some filters and select subgroups by length and/or type.
 -------------------------------------------------------------------------
 
 >Version 1.4.9, 11-Sep-2017.
-Made by David Requena.
+Made by David Requena (d.requena.a@gmail.com).
 For the Laboratory of Bioinformatics and Molecular Biology.
 Universidad Peruana Cayetano Heredia. Lima, Peru.
 This program is free and will be updated in the GitHub repository:
