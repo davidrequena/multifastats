@@ -276,8 +276,7 @@ elif (len(sys.argv)>=3) and (('-f' or '--file') in args): #This is the case when
         indf=args.index('-f')
     except:
         indf=args.index('--file')
-    currDir=os.listdir(os.getcwd())
-    if sys.argv[indf+1] in currDir: #If we receive the file name correctly.
+    if os.path.isfile(sys.argv[indf+1]): #If we receive the file name correctly.
         filename=sys.argv[indf+1] #Use this file to continue.
     else: #If receive the file name incorrectly.
         print 'Incorrect file name given.'
